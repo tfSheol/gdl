@@ -5,7 +5,7 @@
 // Login   <nguye_1@epitech.net>
 //
 // Started on  Thu May 15 15:55:43 2014 Alexandre NGUYEN
-// Last update Thu May 15 16:01:48 2014 Alexandre NGUYEN
+// Last update Thu May 15 17:41:09 2014 Alexandre NGUYEN
 //
 
 #pragma once
@@ -19,19 +19,19 @@
 class GameEngine : public gdl::Game
 {
 public:
-  GameEngine::GameEngine()
+GameEngine()
   {
   }
 
-  bool GameEngine::initialize()
+  bool initialize()
   {
     if (!_context.start(800, 600, "My bomberman!")) // on cree une fenetre
       return false;
     // On active le test de profondeur d'OpenGL pour que les pixels que l'oeil ne voit pas ne s'affichent pas
     glEnable(GL_DEPTH_TEST);
     // On cree un shader, petit programme permettant de dessiner nos objets a l'ecranif (!_shader.load("./Shaders/basic.fp", GL_FRAGMENT_SHADER) // le fragment shader se charge de dessiner les pixels
-    if (!_shader.load("./Shaders/basic.fp", GL_FRAGMENT_SHADER) // le fragment shader se charge de dessiner les pixels
-	|| !_shader.load("./Shaders/basic.vp", GL_VERTEX_SHADER) // le vertex shader s'occupe de projeter les points sur l'ecran
+    if (!_shader.load("./shaders/basic.fp", GL_FRAGMENT_SHADER) // le fragment shader se charge de dessiner les pixels
+	|| !_shader.load("./shaders/basic.vp", GL_VERTEX_SHADER) // le vertex shader s'occupe de projeter les points sur l'ecran
 	|| !_shader.build()) // il faut ensuite compiler son shader
       return false;
 
@@ -61,7 +61,7 @@ public:
     return true;
   }
 
-  bool GameEngine::update()
+  bool update()
   {
 
     // Si la touche ECHAP est appuyee ou si l'utilisateur ferme la fenetre, on quitte le programme
@@ -76,7 +76,7 @@ public:
     return true;
   }
 
-  void GameEngine::draw()
+  void draw()
   {
     // On clear l'ecran
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -89,7 +89,7 @@ public:
     _context.flush();
   }
 
-  GameEngine::~GameEngine()
+  ~GameEngine()
   {
     // N'oublions pas de supprimer les objets une fois le programme termine!
     for (size_t i = 0; i < _objects.size(); ++i)

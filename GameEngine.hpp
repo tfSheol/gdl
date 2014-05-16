@@ -5,7 +5,7 @@
 // Login   <nguye_1@epitech.net>
 //
 // Started on  Thu May 15 15:55:43 2014 Alexandre NGUYEN
-// Last update Thu May 15 17:41:09 2014 Alexandre NGUYEN
+// Last update Fri May 16 16:58:34 2014 Alexandre NGUYEN
 //
 
 #pragma once
@@ -53,11 +53,19 @@ GameEngine()
     _shader.setUniform("projection", projection);
 
     // On va ensuite creer un cube que l'on va ajouter a la liste d'objets
-    AObject *cube = new Cube();
+    AObject *cube1 = new Cube();
+    AObject *cube2 = new Cube();
+    AObject *cube3 = new Cube();
 
-    if (cube->initialize() == false)
+    if (cube1->initialize(0,0,0) == false)
       return (false);
-    _objects.push_back(cube);
+    if (cube2->initialize(10,0,0) == false)
+      return (false);
+    if (cube3->initialize(0,10,0) == false)
+      return (false);
+    _objects.push_back(cube1);
+    _objects.push_back(cube2);
+    _objects.push_back(cube3);
     return true;
   }
 

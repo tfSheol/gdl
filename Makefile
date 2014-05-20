@@ -5,7 +5,7 @@
 ## Login   <sheol@epitech.net>
 ##
 ## Started on  Tue May 13 16:04:20 2014 Teddy Fontaine
-## Last update Thu May 15 16:20:57 2014 Alexandre NGUYEN
+## Last update Tue May 20 15:40:49 2014 teddy fontaine
 ##
 
 BIN		= test_graph
@@ -14,13 +14,15 @@ CC		= g++
 
 RM		= rm -rf
 
+PATH_SRC	= ./src
+
 GDL		= -I./includes -L./libs -lgdl_gl -lGL -lGLEW -ldl -lrt -lfbxsdk -lSDL2 -lpthread
 
 CPPFLAGS	= -W -Wall -Wextra -Werror $(GDL)
 
 LDFLAGS		+= $(CPPFLAGS)
 
-SRCS		= main.cpp
+SRCS		= $(PATH_SRC)/main.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 

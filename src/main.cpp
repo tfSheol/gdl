@@ -5,21 +5,21 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 13 16:05:06 2014 Teddy Fontaine
-// Last update Tue May 20 10:50:28 2014 Alexandre NGUYEN
+** Last update Tue May 20 14:52:19 2014 teddy fontaine
 */
 
 #include <cstdlib>
 #include "GameEngine.hpp"
 #include "cube.hpp"
 
-int main()
+int		main()
 {
-  // On cree son engine
-  GameEngine engine;
+  GameEngine	*engine = new GameEngine();
 
-  if (engine.initialize() == false)
+  if (engine->initialize() == false)
     return (EXIT_FAILURE);
-  while (engine.update() == true)
-    engine.draw();
+  while (engine->update() == true)
+    engine->draw();
+  delete engine;
   return EXIT_SUCCESS;
 }

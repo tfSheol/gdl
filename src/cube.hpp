@@ -5,13 +5,13 @@
 ** Login   <nguye_1@epitech.net>
 **
 ** Started on  Tue May 20 10:45:19 2014 Alexandre NGUYEN
-** Last update Tue May 20 15:31:52 2014 teddy fontaine
+** Last update Tue May 20 17:44:41 2014 teddy fontaine
 */
 
 #ifndef CUBE_HPP_
 # define CUBE_HPP_
 
-#include "AObject.hpp"
+#include "AObject.hh"
 
 class Cube : public AObject
 {

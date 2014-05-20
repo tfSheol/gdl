@@ -5,11 +5,12 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 13 16:05:06 2014 Teddy Fontaine
-// Last update Thu May 15 17:30:37 2014 Alexandre NGUYEN
+// Last update Tue May 20 10:50:28 2014 Alexandre NGUYEN
 */
 
 #include <cstdlib>
 #include "GameEngine.hpp"
+#include "cube.hpp"
 
 int main()
 {

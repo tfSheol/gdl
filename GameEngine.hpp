@@ -5,17 +5,21 @@
 // Login   <nguye_1@epitech.net>
 //
 // Started on  Thu May 15 15:55:43 2014 Alexandre NGUYEN
-// Last update Fri May 16 16:58:34 2014 Alexandre NGUYEN
+// Last update Tue May 20 11:56:59 2014 Alexandre NGUYEN
 //
 
-#pragma once
+#ifndef GAMEENGINE_HPP_
+# define GAMEENGINE_HPP_
 
 #include <Game.hh>
 #include <SdlContext.hh>
 #include "AObject.hpp"
+#include "cube.hpp"
+
 /*
   On cree sa class GameEngine qui herite de game
 */
+
 class GameEngine : public gdl::Game
 {
 public:
@@ -25,7 +29,7 @@ GameEngine()
 
   bool initialize()
   {
-    if (!_context.start(800, 600, "My bomberman!")) // on cree une fenetre
+    if (!_context.start(1300, 900, "My bomberman!")) // on cree une fenetre
       return false;
     // On active le test de profondeur d'OpenGL pour que les pixels que l'oeil ne voit pas ne s'affichent pas
     glEnable(GL_DEPTH_TEST);
@@ -45,7 +49,7 @@ GameEngine()
     // La transformation de la camera correspond a son orientation et sa position
     // La camera sera ici situee a la position 0, 20, -100 et regardera vers la position 0, 0, 0
 
-    transformation = glm::lookAt(glm::vec3(0, 10, -30), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+    transformation = glm::lookAt(glm::vec3(0, 11, -2), glm::vec3(0, 10, 0), glm::vec3(0, 1, 0));
 
     // On doit toujours binder le shader avant d'appeler les methodes setUniform
     _shader.bind();
@@ -111,3 +115,5 @@ private:
   gdl::BasicShader _shader;
   std::vector<AObject*> _objects;
 };
+
+#endif

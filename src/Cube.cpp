@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Wed May 21 13:35:02 2014 teddy fontaine
-** Last update Wed May 21 13:53:41 2014 teddy fontaine
+// Last update Wed May 21 14:12:36 2014 Alexandre NGUYEN
 */
 
 #include "Cube.hh"
@@ -26,7 +26,7 @@ bool	Cube::initialize(int x, int y, int z)
 {
   _speed = 10.0f;
 
-  if (_texture.load("./textures/stone_wall/wall_512_1_05.tga") == false)
+  if (_texture.load("./textures/brique.tga") == false)
   {
     std::cerr << "Cannot load the cube texture" << std::endl;
     return (false);
@@ -36,55 +36,55 @@ bool	Cube::initialize(int x, int y, int z)
   _geometry.pushVertex(glm::vec3(x + 0.5, y + 0.5, z + 0.5));
   _geometry.pushVertex(glm::vec3(x + -0.5, y + 0.5, z + 0.5));
   _geometry.pushVertex(glm::vec3(x + -0.5, y + -0.5, z + 0.5));
+  _geometry.pushUv(glm::vec2(0.0f, 1.0f));
   _geometry.pushUv(glm::vec2(0.0f, 0.0f));
   _geometry.pushUv(glm::vec2(1.0f, 0.0f));
   _geometry.pushUv(glm::vec2(1.0f, 1.0f));
-  _geometry.pushUv(glm::vec2(0.0f, 1.0f));
 
   _geometry.pushVertex(glm::vec3(x + 0.5, y + -0.5, z + -0.5));
   _geometry.pushVertex(glm::vec3(x + 0.5, y + 0.5, z + -0.5));
   _geometry.pushVertex(glm::vec3(x + -0.5, y + 0.5, z + -0.5));
   _geometry.pushVertex(glm::vec3(x + -0.5, y + -0.5, z + -0.5));
+  _geometry.pushUv(glm::vec2(0.0f, 1.0f));
   _geometry.pushUv(glm::vec2(0.0f, 0.0f));
   _geometry.pushUv(glm::vec2(1.0f, 0.0f));
   _geometry.pushUv(glm::vec2(1.0f, 1.0f));
-  _geometry.pushUv(glm::vec2(0.0f, 1.0f));
 
   _geometry.pushVertex(glm::vec3(x + 0.5, y + -0.5, z + -0.5));
   _geometry.pushVertex(glm::vec3(x + 0.5, y + 0.5, z + -0.5));
   _geometry.pushVertex(glm::vec3(x + 0.5, y + 0.5, z + 0.5));
   _geometry.pushVertex(glm::vec3(x + 0.5, y + -0.5, z + 0.5));
+  _geometry.pushUv(glm::vec2(0.0f, 1.0f));
   _geometry.pushUv(glm::vec2(0.0f, 0.0f));
   _geometry.pushUv(glm::vec2(1.0f, 0.0f));
   _geometry.pushUv(glm::vec2(1.0f, 1.0f));
-  _geometry.pushUv(glm::vec2(0.0f, 1.0f));
 
   _geometry.pushVertex(glm::vec3(x + -0.5, y + -0.5, z + 0.5));
   _geometry.pushVertex(glm::vec3(x + -0.5, y + 0.5, z + 0.5));
   _geometry.pushVertex(glm::vec3(x + -0.5, y + 0.5, z + -0.5));
   _geometry.pushVertex(glm::vec3(x + -0.5, y + -0.5, z + -0.5));
+  _geometry.pushUv(glm::vec2(0.0f, 1.0f));
   _geometry.pushUv(glm::vec2(0.0f, 0.0f));
   _geometry.pushUv(glm::vec2(1.0f, 0.0f));
   _geometry.pushUv(glm::vec2(1.0f, 1.0f));
-  _geometry.pushUv(glm::vec2(0.0f, 1.0f));
 
   _geometry.pushVertex(glm::vec3(x + 0.5, y + 0.5, z + 0.5));
   _geometry.pushVertex(glm::vec3(x + 0.5, y + 0.5, z + -0.5));
   _geometry.pushVertex(glm::vec3(x + -0.5, y + 0.5, z + -0.5));
   _geometry.pushVertex(glm::vec3(x + -0.5, y + 0.5, z + 0.5));
+  _geometry.pushUv(glm::vec2(0.0f, 1.0f));
   _geometry.pushUv(glm::vec2(0.0f, 0.0f));
   _geometry.pushUv(glm::vec2(1.0f, 0.0f));
   _geometry.pushUv(glm::vec2(1.0f, 1.0f));
-  _geometry.pushUv(glm::vec2(0.0f, 1.0f));
 
   _geometry.pushVertex(glm::vec3(x + 0.5, y + -0.5, z + -0.5));
   _geometry.pushVertex(glm::vec3(x + 0.5, y + -0.5, z + 0.5));
   _geometry.pushVertex(glm::vec3(x + -0.5, y + -0.5, z + 0.5));
   _geometry.pushVertex(glm::vec3(x + -0.5, y + -0.5, z + -0.5));
+  _geometry.pushUv(glm::vec2(0.0f, 1.0f));
   _geometry.pushUv(glm::vec2(0.0f, 0.0f));
   _geometry.pushUv(glm::vec2(1.0f, 0.0f));
   _geometry.pushUv(glm::vec2(1.0f, 1.0f));
-  _geometry.pushUv(glm::vec2(0.0f, 1.0f));
 
   _geometry.build();
   return (true);

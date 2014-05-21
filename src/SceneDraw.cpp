@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Wed May 21 11:27:28 2014 teddy fontaine
-** Last update Wed May 21 11:53:38 2014 teddy fontaine
+** Last update Wed May 21 13:22:49 2014 teddy fontaine
 */
 
 #include "GameEngine.hh"
@@ -35,5 +35,9 @@ bool		GameEngine::cubeDraw()
 
 bool		GameEngine::showHud()
 {
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  glOrtho(0.0f, 1280, 960, 0.0f, 0.0f, 1.0f);
+
   return (true);
 }

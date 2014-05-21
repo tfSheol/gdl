@@ -5,7 +5,7 @@
 ## Login   <sheol@epitech.net>
 ##
 ## Started on  Tue May 13 16:04:20 2014 Teddy Fontaine
-## Last update Tue May 20 17:43:42 2014 teddy fontaine
+## Last update Wed May 21 11:37:49 2014 teddy fontaine
 ##
 
 BIN		= test_graph
@@ -24,7 +24,8 @@ LDFLAGS		+= $(CPPFLAGS)
 
 SRCS		= $(PATH_SRC)/main.cpp		\
 		  $(PATH_SRC)/GameEngine.cpp	\
-		  $(PATH_SRC)/AObject.cpp
+		  $(PATH_SRC)/AObject.cpp	\
+		  $(PATH_SRC)/SceneDraw.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 

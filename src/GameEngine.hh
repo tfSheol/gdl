@@ -5,7 +5,7 @@
 ** Login   <nguye_1@epitech.net>
 **
 ** Started on  Thu May 15 15:55:43 2014 Alexandre NGUYEN
-** Last update Tue May 20 17:44:00 2014 teddy fontaine
+** Last update Wed May 21 11:54:23 2014 teddy fontaine
 */
 
 #include <Game.hh>
@@ -18,19 +18,22 @@
 
 class GameEngine : public gdl::Game
 {
+  private:
+    gdl::SdlContext		_context;
+    gdl::Clock			_clock;
+    gdl::Input			_input;
+    gdl::BasicShader		_shader;
+    std::vector<AObject*>	_objects;
+
   public:
     GameEngine();
     ~GameEngine();
-    bool	initialize();
-    bool	update();
-    void	draw();
-
-  private:
-    gdl::SdlContext _context;
-    gdl::Clock _clock;
-    gdl::Input _input;
-    gdl::BasicShader _shader;
-    std::vector<AObject*> _objects;
+    bool			initialize();
+    bool			update();
+    void			draw();
+    bool			scene();
+    bool			cubeDraw();
+    bool			showHud();
 };
 
-#endif /* GAMEENGINE_HH_ */
+#endif /* !GAMEENGINE_HH_ */

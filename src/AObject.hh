@@ -5,7 +5,7 @@
 ** Login   <nguye_1@epitech.net>
 **
 ** Started on  Thu May 15 16:02:49 2014 Alexandre NGUYEN
-** Last update Tue May 20 17:48:14 2014 teddy fontaine
+** Last update Wed May 21 11:35:02 2014 teddy fontaine
 */
 
 #include <SdlContext.hh>
@@ -45,4 +45,4 @@ class AObject
     glm::vec3 _scale;
 };
 
-#endif /* AOBJECT_HH_ */
+#endif /* !AOBJECT_HH_ */

@@ -5,7 +5,7 @@
 ** Login   <nguye_1@epitech.net>
 **
 ** Started on  Tue May 20 10:45:19 2014 Alexandre NGUYEN
-** Last update Tue May 20 17:44:41 2014 teddy fontaine
+** Last update Wed May 21 11:52:24 2014 teddy fontaine
 */
 
 #ifndef CUBE_HPP_
@@ -128,4 +128,4 @@ class Cube : public AObject
     }
 };
 
-#endif /* CUBE_HPP_ */
+#endif /* !CUBE_HPP_ */

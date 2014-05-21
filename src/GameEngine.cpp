@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 15:51:01 2014 teddy fontaine
-** Last update Tue May 20 17:31:49 2014 teddy fontaine
+** Last update Wed May 21 12:02:27 2014 teddy fontaine
 */
 
 #include "GameEngine.hh"
@@ -17,7 +17,7 @@ GameEngine::GameEngine()
 /*
  * Initialisation de la fenetre
  * Initialisation de la camera
- * Draw de 3 cubes
+ * Draw de 3 cubes par SceneDraw::scene()
  */
 bool		GameEngine::initialize()
 {
@@ -32,29 +32,16 @@ bool		GameEngine::initialize()
   glm::mat4 projection;
   glm::mat4 transformation;
   projection = glm::perspective(60.0f, 800.0f / 600.0f, 0.1f, 100.0f);
-  transformation = glm::lookAt(glm::vec3(0, 11, -2), glm::vec3(0, 10, 0), glm::vec3(0, 1, 0));
+  transformation = glm::lookAt(glm::vec3(0, 3, -3), glm::vec3(0, 1, 0), glm::vec3(0, 1, 0));
 
   _shader.bind();
   _shader.setUniform("view", transformation);
   _shader.setUniform("projection", projection);
 
-  /*
-   * OBJS
-   */
-  AObject *cube1 = new Cube();
-  AObject *cube2 = new Cube();
-  AObject *cube3 = new Cube();
+  if (this->scene() == false)
+    return (false);
 
-  if (cube1->initialize(0,0,0) == false)
-    return (false);
-  if (cube2->initialize(10,0,0) == false)
-    return (false);
-  if (cube3->initialize(0,10,0) == false)
-    return (false);
-  _objects.push_back(cube1);
-  _objects.push_back(cube2);
-  _objects.push_back(cube3);
-  return true;
+  return (true);
 }
 
 /*
@@ -85,7 +72,7 @@ void		GameEngine::draw()
 }
 
 /*
- * Supprime les objets
+ * Detruit les objets
  */
 GameEngine::~GameEngine()
 {

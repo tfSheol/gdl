@@ -5,7 +5,7 @@
 ** Login   <nguye_1@epitech.net>
 **
 ** Started on  Tue May 20 10:45:19 2014 Alexandre NGUYEN
-** Last update Wed May 21 13:51:58 2014 teddy fontaine
+// Last update Wed May 21 14:48:39 2014 Alexandre NGUYEN
 */
 
 #ifndef CUBE_HH_
@@ -15,18 +15,20 @@
 
 class Cube : public AObject
 {
-  private:
+private:
 
-    gdl::Texture	_texture;
-    gdl::Geometry	_geometry;
-    float		_speed;
+  gdl::Texture	_texture;
+  gdl::Geometry	_geometry;
+  float		_speed;
 
-  public:
-    Cube();
-    virtual ~Cube();
-    virtual bool	initialize(int x, int y, int z);
-    virtual void	update(gdl::Clock const &clock, gdl::Input &input);
-    virtual void	draw(gdl::AShader &shader, gdl::Clock const &clock);
+public:
+  Cube();
+  virtual ~Cube();
+  virtual bool	initialize(float x, float y, float z);
+  virtual bool	initialize(float x, float y, float z, float size_x, float size_y, float size_z);
+  virtual bool	initialize(float x, float y, float z, float size_x, float size_y, float size_z, std::string texture_name);
+  virtual void	update(gdl::Clock const &clock, gdl::Input &input);
+  virtual void	draw(gdl::AShader &shader, gdl::Clock const &clock);
 };
 
 #endif /* !CUBE_HH_ */

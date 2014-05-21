@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 17:34:37 2014 teddy fontaine
-** Last update Tue May 20 17:48:45 2014 teddy fontaine
+// Last update Wed May 21 14:50:41 2014 Alexandre NGUYEN
 */
 
 #include "AObject.hh"
@@ -23,7 +23,17 @@ AObject::~AObject()
 /*
  * Initialize l'objet
  */
-bool		AObject::initialize(__attribute__((unused))int x, __attribute__((unused))int y, __attribute__((unused))int z)
+bool		AObject::initialize(__attribute__((unused))float x, __attribute__((unused))float y, __attribute__((unused))float z)
+{
+  return (true);
+}
+
+bool		AObject::initialize(__attribute__((unused))float x, __attribute__((unused))float y, __attribute__((unused))float z, __attribute__((unused))float size_x, __attribute__((unused))float size_y, __attribute__((unused))float size_z)
+{
+  return (true);
+}
+
+bool		AObject::initialize(__attribute__((unused))float x, __attribute__((unused))float y, __attribute__((unused))float z, __attribute__((unused))float size_x, __attribute__((unused))float size_y, __attribute__((unused))float size_z, __attribute__((unused))std::string texture_name)
 {
   return (true);
 }

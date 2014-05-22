@@ -5,7 +5,7 @@
 ** Login   <nguye_1@epitech.net>
 **
 ** Started on  Thu May 15 15:55:43 2014 Alexandre NGUYEN
-** Last update Wed May 21 13:51:31 2014 teddy fontaine
+// Last update Thu May 22 10:41:12 2014 Alexandre NGUYEN
 */
 
 #include <Game.hh>
@@ -24,7 +24,6 @@ class GameEngine : public gdl::Game
     gdl::Input			_input;
     gdl::BasicShader		_shader;
     std::vector<AObject*>	_objects;
-
   public:
     GameEngine();
     ~GameEngine();

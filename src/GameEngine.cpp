@@ -5,9 +5,11 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 15:51:01 2014 teddy fontaine
-** Last update Wed May 21 12:02:27 2014 teddy fontaine
+// Last update Thu May 22 14:53:24 2014 Alexandre NGUYEN
 */
 
+#include <iostream>
+#include <string>
 #include "GameEngine.hh"
 
 GameEngine::GameEngine()
@@ -52,6 +54,11 @@ bool		GameEngine::update()
 {
   if (_input.getKey(SDLK_ESCAPE) || _input.getInput(SDL_QUIT))
     return false;
+  glm::i8vec2 pos;
+  pos = _input.getMousePosition();
+
+  std::cout << (int)pos[0] << std::endl;
+  std::cout << (int)pos[1] << std::endl;
   _context.updateClock(_clock);
   _context.updateInputs(_input);
   for (size_t i = 0; i < _objects.size(); ++i)

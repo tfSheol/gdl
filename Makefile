@@ -5,7 +5,7 @@
 ## Login   <sheol@epitech.net>
 ##
 ## Started on  Tue May 13 16:04:20 2014 Teddy Fontaine
-## Last update Wed May 21 13:47:23 2014 teddy fontaine
+## Last update Thu May 22 15:13:36 2014 peyrot_m
 ##
 
 BIN		= test_graph
@@ -16,7 +16,7 @@ RM		= rm -rf
 
 PATH_SRC	= ./src
 
-GDL		= -I./includes -L./libs -lgdl_gl -lGL -lGLEW -ldl -lrt -lfbxsdk -lSDL2 -lpthread
+GDL		= -I./includes -L./libs -lgdl_gl -lGL -lGLEW -ldl -lrt -lfbxsdk -lSDL2 -lpthread -Wl,--rpath=./libs/
 
 CPPFLAGS	= -W -Wall -Wextra -Werror $(GDL)
 

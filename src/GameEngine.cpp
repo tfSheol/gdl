@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 15:51:01 2014 teddy fontaine
-// Last update Thu May 22 14:53:24 2014 Alexandre NGUYEN
+// Last update Thu May 22 15:47:52 2014 Alexandre NGUYEN
 */
 
 #include <iostream>
@@ -40,6 +40,11 @@ bool		GameEngine::initialize()
   _shader.setUniform("view", transformation);
   _shader.setUniform("projection", projection);
 
+  SDL_Surface	*surface;
+
+  if ((surface = SDL_LoadBMP("./textures/pack_images_sdz/icone.bmp")) == NULL)
+    std::cerr << "Fail to load .bmp" << std::endl;
+
   if (this->scene() == false)
     return (false);
 
@@ -54,7 +59,7 @@ bool		GameEngine::update()
 {
   if (_input.getKey(SDLK_ESCAPE) || _input.getInput(SDL_QUIT))
     return false;
-  glm::i8vec2 pos;
+  glm::ivec2 pos;
   pos = _input.getMousePosition();
 
   std::cout << (int)pos[0] << std::endl;

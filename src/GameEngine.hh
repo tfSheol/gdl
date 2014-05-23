@@ -5,13 +5,14 @@
 ** Login   <nguye_1@epitech.net>
 **
 ** Started on  Thu May 15 15:55:43 2014 Alexandre NGUYEN
-// Last update Thu May 22 10:41:12 2014 Alexandre NGUYEN
+// Last update Fri May 23 16:01:35 2014 Alexandre NGUYEN
 */
 
 #include <Game.hh>
 #include <SdlContext.hh>
 #include "AObject.hh"
 #include "Cube.hh"
+#include "Carre.hh"
 
 #ifndef GAMEENGINE_HH_
 # define GAMEENGINE_HH_

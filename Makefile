@@ -5,7 +5,7 @@
 ## Login   <sheol@epitech.net>
 ##
 ## Started on  Tue May 13 16:04:20 2014 Teddy Fontaine
-## Last update Thu May 22 15:13:36 2014 peyrot_m
+## Last update Fri May 23 15:56:41 2014 Alexandre NGUYEN
 ##
 
 BIN		= test_graph
@@ -26,7 +26,8 @@ SRCS		= $(PATH_SRC)/main.cpp		\
 		  $(PATH_SRC)/GameEngine.cpp	\
 		  $(PATH_SRC)/AObject.cpp	\
 		  $(PATH_SRC)/SceneDraw.cpp	\
-		  $(PATH_SRC)/Cube.cpp
+		  $(PATH_SRC)/Cube.cpp		\
+		  $(PATH_SRC)/Carre.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 

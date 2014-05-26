@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 15:51:01 2014 teddy fontaine
-// Last update Fri May 23 16:54:03 2014 Alexandre NGUYEN
+** Last update Mon May 26 11:36:32 2014 teddy fontaine
 */
 
 #include <iostream>
@@ -23,7 +23,7 @@ GameEngine::GameEngine()
  */
 bool		GameEngine::initialize()
 {
-  if (!_context.start(1280, 960, "My bomberman!"))
+  if (!this->start(1280, 960, "My bomberman!"))
     return false;
   glEnable(GL_DEPTH_TEST);
   if (!_shader.load("./shaders/basic.fp", GL_FRAGMENT_SHADER)
@@ -40,16 +40,20 @@ bool		GameEngine::initialize()
   _shader.setUniform("view", transformation);
   _shader.setUniform("projection", projection);
 
-  SDL_Surface	*surface;
-
-  if ((surface = SDL_LoadBMP("./textures/pack_images_sdz/icone.bmp")) == NULL)
-    std::cerr << "Fail to load .bmp" << std::endl;
-
   if (this->scene() == false)
     return (false);
 
   return (true);
 }
+
+/*
+ * Retourne la fenetre courante
+ */
+SDL_Window	*GameEngine::getWindow()
+{
+  return (this->_window);
+}
+
 
 /*
  * update des objets
@@ -64,11 +68,12 @@ bool		GameEngine::update()
 
   // std::cout << (int)pos[0] << std::endl;
   // std::cout << (int)pos[1] << std::endl;
-  _context.updateClock(_clock);
-  _context.updateInputs(_input);
+  this->updateClock(_clock);
+  this->updateInputs(_input);
   for (size_t i = 0; i < _objects.size(); ++i)
     _objects[i]->update(_clock, _input);
-  return true;
+
+  return (true);
 }
 
 /*
@@ -80,7 +85,7 @@ void		GameEngine::draw()
   _shader.bind();
   for (size_t i = 0; i < _objects.size(); ++i)
     _objects[i]->draw(_shader, _clock);
-  _context.flush();
+  this->flush();
 }
 
 /*

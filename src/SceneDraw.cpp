@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Wed May 21 11:27:28 2014 teddy fontaine
-// Last update Fri May 23 16:52:28 2014 Alexandre NGUYEN
+** Last update Mon May 26 13:54:52 2014 teddy fontaine
 */
 
 #include "GameEngine.hh"
@@ -22,34 +22,41 @@ bool		GameEngine::scene()
   return (true);
 }
 
+/*
+ *
+ */
 bool		GameEngine::cubeDraw()
 {
-  // AObject *cube1 = new Cube();
+   AObject *cube1 = new Cube();
   // AObject *cube2 = new Cube();
   // AObject *cube3 = new Cube();
-  AObject *carre = new Carre();
+//  AObject *carre = new Carre();
 
-  // if (cube1->initialize(2.5,0,0) == false)
-  //   return (false);
+   if (cube1->initialize(2.5,0,0) == false)
+     return (false);
   // if (cube2->initialize(0,0,1.5,3,1,1) == false)
   //   return (false);
   // if (cube3->initialize(0,1,3,3,1,1, "./textures/play.tga") == false)
   //   return (false);
-  if (carre->initialize(0,3,0,4,3,1, "./textures/play.tga") == false)
-    return (false);
-  // _objects.push_back(cube1);
+//  if (carre->initialize(0,3,0,4,3,1, "./textures/play.tga") == false)
+//    return (false);
+   _objects.push_back(cube1);
   // _objects.push_back(cube2);
   // _objects.push_back(cube3);
-  _objects.push_back(carre);
+//  _objects.push_back(carre);
 
   return (true);
 }
 
+/*
+ *
+ */
 bool		GameEngine::showHud()
 {
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  glOrtho(0.0f, 1280, 960, 0.0f, 0.0f, 1.0f);
+  AObject *img = new Img(this->_window, "./img/test.bmp");
 
+  if (img->initialize(0.0f, 0.0f, 0.0f) == false)
+    return (false);
+  _objects.push_back(img);
   return (true);
 }

@@ -5,7 +5,7 @@
 ** Login   <nguye_1@epitech.net>
 **
 ** Started on  Thu May 15 16:02:49 2014 Alexandre NGUYEN
-// Last update Wed May 21 14:45:54 2014 Alexandre NGUYEN
+** Last update Sat May 24 21:53:07 2014 teddy fontaine
 */
 
 #include <SdlContext.hh>
@@ -22,20 +22,17 @@
 
 class AObject
 {
-public:
-  AObject();
-  virtual ~AObject();
-  virtual bool		initialize(__attribute__((unused))float x, __attribute__((unused))float y, __attribute__((unused))float z);
-  virtual bool		initialize(__attribute__((unused))float x, __attribute__((unused))float y, __attribute__((unused))float z, __attribute__((unused))float size_x, __attribute__((unused))float size_y, __attribute__((unused))float size_z);
-  virtual bool		initialize(__attribute__((unused))float x, __attribute__((unused))float y, __attribute__((unused))float z, __attribute__((unused))float size_x, __attribute__((unused))float size_y, __attribute__((unused))float size_z, __attribute__((unused))std::string texture_name);
-  virtual void		update(__attribute__((unused))gdl::Clock const &clock, __attribute__((unused))gdl::Input &input);
-
-
-    /*
-     * Dessine l'objet
-     */
+  public:
+    AObject();
+    virtual ~AObject();
+    virtual bool		initialize(__attribute__((unused))float x, __attribute__((unused))float y, __attribute__((unused))float z);
+    virtual bool		initialize(__attribute__((unused))float x, __attribute__((unused))float y, __attribute__((unused))float z,
+					   __attribute__((unused))float size_x, __attribute__((unused))float size_y, __attribute__((unused))float size_z);
+    virtual bool		initialize(__attribute__((unused))float x, __attribute__((unused))float y, __attribute__((unused))float z,
+					   __attribute__((unused))float size_x, __attribute__((unused))float size_y, __attribute__((unused))float size_z,
+					   __attribute__((unused))std::string texture_name);
+    virtual void		update(__attribute__((unused))gdl::Clock const &clock, __attribute__((unused))gdl::Input &input);
     virtual void		draw(gdl::AShader &shader, gdl::Clock const &clock) = 0;
-
     void			translate(glm::vec3 const &v);
     void			rotate(glm::vec3 const& axis, float angle);
     void			scale(glm::vec3 const& scale);

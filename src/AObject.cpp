@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 17:34:37 2014 teddy fontaine
-// Last update Wed May 21 14:50:41 2014 Alexandre NGUYEN
+** Last update Sat May 24 22:50:28 2014 teddy fontaine
 */
 
 #include "AObject.hh"

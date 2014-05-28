@@ -5,7 +5,7 @@
 ** Login   <sheol@epitech.net>
 **
 ** Started on  Sat May 24 21:05:38 2014 teddy fontaine
-** Last update Wed May 28 10:40:31 2014 teddy fontaine
+** Last update Wed May 28 10:45:12 2014 teddy fontaine
 */
 
 #include "Img.hh"
@@ -14,7 +14,6 @@ Img::Img(SDL_Window *window, std::string path)
 {
   this->_filepath = path;
   this->_window = window;
-  this->_time = TIME_CLOCK;
 }
 
 Img::~Img()

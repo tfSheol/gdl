@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 15:51:01 2014 teddy fontaine
-** Last update Wed May 28 10:40:39 2014 teddy fontaine
+** Last update Wed May 28 10:45:20 2014 teddy fontaine
 */
 
 #include <iostream>
@@ -42,6 +42,7 @@ bool		GameEngine::initialize()
 
   if (this->scene() == false)
     return (false);
+  this->_time = TIME_CLOCK;
 
   return (true);
 }

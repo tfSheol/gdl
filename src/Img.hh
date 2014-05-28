@@ -5,13 +5,11 @@
 ** Login   <sheol@epitech.net>
 **
 ** Started on  Sat May 24 21:07:44 2014 teddy fontaine
-** Last update Wed May 28 10:32:31 2014 teddy fontaine
+** Last update Wed May 28 10:45:48 2014 teddy fontaine
 */
 
 #ifndef IMG_HH_
 # define IMG_HH_
-
-#define TIME_CLOCK	1
 
 #include "AObject.hh"
 
@@ -24,7 +22,6 @@ class Img : public AObject
   private:
     int			_x;
     int			_y;
-    int			_time;
     std::string		_filepath;
     SDL_Surface		*loadImage();
     void		applySurface();

@@ -5,7 +5,7 @@
 ** Login   <nguye_1@epitech.net>
 **
 ** Started on  Thu May 15 15:55:43 2014 Alexandre NGUYEN
-** Last update Wed May 28 10:39:29 2014 teddy fontaine
+** Last update Wed May 28 10:45:53 2014 teddy fontaine
 */
 
 #include <Game.hh>
@@ -17,6 +17,8 @@
 
 #ifndef GAMEENGINE_HH_
 # define GAMEENGINE_HH_
+
+#define TIME_CLOCK	1
 
 class GameEngine : public gdl::Game, public gdl::SdlContext
 {

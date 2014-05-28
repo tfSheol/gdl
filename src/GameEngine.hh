@@ -5,7 +5,7 @@
 ** Login   <nguye_1@epitech.net>
 **
 ** Started on  Thu May 15 15:55:43 2014 Alexandre NGUYEN
-** Last update Mon May 26 09:16:45 2014 teddy fontaine
+** Last update Wed May 28 10:39:29 2014 teddy fontaine
 */
 
 #include <Game.hh>
@@ -25,7 +25,7 @@ class GameEngine : public gdl::Game, public gdl::SdlContext
     gdl::Input			_input;
     gdl::BasicShader		_shader;
     std::vector<AObject*>	_objects;
-    Uint32			_start; // test de clock
+    int				_time;
     SDL_Surface			*loadImage(std::string filepath);
     void			applySurface(int x,int y, SDL_Surface* source,
 						 SDL_Window* destination, SDL_Rect *clip);

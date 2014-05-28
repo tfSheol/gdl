@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 15:51:01 2014 teddy fontaine
-** Last update Mon May 26 11:36:32 2014 teddy fontaine
+** Last update Wed May 28 10:40:39 2014 teddy fontaine
 */
 
 #include <iostream>
@@ -85,6 +85,13 @@ void		GameEngine::draw()
   _shader.bind();
   for (size_t i = 0; i < _objects.size(); ++i)
     _objects[i]->draw(_shader, _clock);
+  if (this->_time == TIME_CLOCK)
+    {
+      SDL_UpdateWindowSurface(this->_window);
+      this->_time = 0;
+    }
+  SDL_Delay(100);
+  this->_time += 1;
   this->flush();
 }
 

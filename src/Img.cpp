@@ -5,7 +5,7 @@
 ** Login   <sheol@epitech.net>
 **
 ** Started on  Sat May 24 21:05:38 2014 teddy fontaine
-** Last update Mon May 26 13:53:28 2014 teddy fontaine
+** Last update Wed May 28 10:40:31 2014 teddy fontaine
 */
 
 #include "Img.hh"
@@ -14,10 +14,12 @@ Img::Img(SDL_Window *window, std::string path)
 {
   this->_filepath = path;
   this->_window = window;
+  this->_time = TIME_CLOCK;
 }
 
 Img::~Img()
 {
+  SDL_FreeSurface(this->_img);
 }
 
 /*
@@ -51,8 +53,8 @@ void		Img::draw(__attribute__((unused))gdl::AShader &shader,
 			  __attribute__((unused))gdl::Clock const &clock)
 {
   this->applySurface();
-  SDL_UpdateWindowSurface(this->_window);
-  SDL_Delay(clock.getElapsed());
+//  std::cout << this->_time << std::endl;
+  //SDL_Delay(clock.getElapsed() * 500);
 }
 
 /*

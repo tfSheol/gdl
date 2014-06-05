@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:37:28 2014 teddy fontaine
-** Last update Wed Jun  4 16:54:22 2014 teddy fontaine
+** Last update Thu Jun  5 14:38:34 2014 teddy fontaine
 */
 
 #include <Model.hh>
@@ -34,7 +34,7 @@ class Player : public AObject
     std::string	_modelPath;
     std::string	_textureMod;
     float	_speed;
-    gdl::Model	*_model;
+    gdl::Model	_model;
     glm::mat4	_trans;
 };
 

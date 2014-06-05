@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-** Last update Thu Jun  5 14:31:10 2014 teddy fontaine
+** Last update Thu Jun  5 15:33:12 2014 teddy fontaine
 */
 
 #include "Bonus.hh"
@@ -23,20 +23,20 @@ bool	Bonus::initialize(__attribute__((unused)) float x,
 			__attribute__((unused)) float y,
 			__attribute__((unused)) float z)
 {
-  _speed = 10.0f;
+  _speed = 100.0f;
+  _angle = 0.0f;
   _x = x;
   _y = y;
   _z = z;
   _rX = 0;
   _rY = 0;
   _rZ = 0;
-  _model = new gdl::Model();
-  _model->load(_modelPath);
-  _trans = glm::scale(glm::translate(glm::rotate(
+  _model.load(_modelPath);
+  _trans = glm::scale(glm::rotate(glm::translate(
 				       glm::mat4(1),
-				       90.0f,
-				       glm::vec3(_rX, _rY + 1, _rZ)),
-				     glm::vec3(_x, _y, _z)),
+				       glm::vec3(_x, _y, _z)),
+				  0.0f,
+				  glm::vec3(0, 1, 0)),
 		      glm::vec3(0.001f, 0.001f, 0.001f));
   return (true);
 }
@@ -44,10 +44,17 @@ bool	Bonus::initialize(__attribute__((unused)) float x,
 void	Bonus::update(__attribute__((unused)) gdl::Clock const &clock,
 		    __attribute__((unused)) gdl::Input &input)
 {
+  _angle += clock.getElapsed() * _speed;
+  _trans = glm::scale(glm::rotate(glm::translate(
+				       glm::mat4(1),
+				       glm::vec3(_x, _y, _z)),
+				  _angle,
+				  glm::vec3(0, 1, 0)),
+		      glm::vec3(0.001f, 0.001f, 0.001f));
 }
 
 void	Bonus::draw(__attribute__((unused)) gdl::AShader &shader,
 		  __attribute__((unused)) gdl::Clock const &clock)
 {
-  _model->draw(shader, _trans, clock.getElapsed());
+  _model.draw(shader, _trans, clock.getElapsed());
 }

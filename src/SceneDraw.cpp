@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Wed May 21 11:27:28 2014 teddy fontaine
-** Last update Thu Jun  5 14:33:08 2014 teddy fontaine
+** Last update Thu Jun  5 14:48:03 2014 teddy fontaine
 */
 
 #include "GameEngine.hh"
@@ -30,7 +30,7 @@ bool		GameEngine::scene()
 
   AObject *mod = new Mod("./assets/bomb.fbx");
 //  AObject *mod1 = new Mod("./assets/bomb.fbx");
-  AObject *mod1 = new Mod("./assets/quad.fbx");
+  AObject *mod1 = new Bonus("./assets/quad.fbx");
   AObject *player = new Player("./assets/marvin.fbx");
 //  AObject *mod2 = new Mod("./assets/marvin.fbx");
 

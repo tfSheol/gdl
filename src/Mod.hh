@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:37:28 2014 teddy fontaine
-** Last update Tue Jun  3 15:08:06 2014 teddy fontaine
+** Last update Thu Jun  5 14:42:53 2014 teddy fontaine
 */
 
 #include <Model.hh>
@@ -32,7 +32,7 @@ class Mod : public AObject
     float	_rZ;
     std::string	_modelPath;
     float	_speed;
-    gdl::Model	*_model;
+    gdl::Model	_model;
     glm::mat4	_trans;
 };
 

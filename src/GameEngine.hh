@@ -5,7 +5,7 @@
 ** Login   <nguye_1@epitech.net>
 **
 ** Started on  Thu May 15 15:55:43 2014 Alexandre NGUYEN
-** Last update Tue Jun  3 15:05:54 2014 teddy fontaine
+** Last update Thu Jun  5 14:32:43 2014 teddy fontaine
 */
 
 #include <Game.hh>
@@ -16,6 +16,7 @@
 #include "Img.hh"
 #include "Mod.hh"
 #include "Player.hh"
+#include "Bonus.hh"
 #include "Cam.hh"
 
 #ifndef GAMEENGINE_HH_

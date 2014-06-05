@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Wed May 21 11:27:28 2014 teddy fontaine
-** Last update Thu Jun  5 12:09:32 2014 teddy fontaine
+** Last update Thu Jun  5 14:33:08 2014 teddy fontaine
 */
 
 #include "GameEngine.hh"
@@ -20,7 +20,7 @@ bool		GameEngine::scene()
 
   if (cam->initialize(1, 1, 1) == false)
     return (false);
-  _objeclts.push_back(cam);
+  _objects.push_back(cam);
 
 
 /*  if (showHud() == false)

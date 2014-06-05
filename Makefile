@@ -5,7 +5,7 @@
 ## Login   <sheol@epitech.net>
 ##
 ## Started on  Tue May 13 16:04:20 2014 Teddy Fontaine
-## Last update Tue Jun  3 15:05:02 2014 teddy fontaine
+## Last update Thu Jun  5 14:32:24 2014 teddy fontaine
 ##
 
 BIN		= test_graph
@@ -32,6 +32,7 @@ SRCS		= $(PATH_SRC)/main.cpp		\
 		  $(PATH_SRC)/Mod.cpp		\
 		  $(PATH_SRC)/Player.cpp	\
 		  $(PATH_SRC)/Cam.cpp		\
+		  $(PATH_SRC)/Bonus.cpp		\
 
 OBJS		= $(SRCS:.cpp=.o)
 

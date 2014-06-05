@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Wed May 21 11:27:28 2014 teddy fontaine
-** Last update Thu Jun  5 14:48:03 2014 teddy fontaine
+** Last update Thu Jun  5 16:12:22 2014 teddy fontaine
 */
 
 #include "GameEngine.hh"
@@ -34,11 +34,11 @@ bool		GameEngine::scene()
   AObject *player = new Player("./assets/marvin.fbx");
 //  AObject *mod2 = new Mod("./assets/marvin.fbx");
 
-  if (mod->initialize(0, 0, 0) == false)
+  if (mod->initialize(1, 0, 0) == false)
     return (false);
-  if (mod1->initialize(5, 1, 0) == false)
+  if (mod1->initialize(2, 0, 0) == false)
     return (false);
-  if (player->initialize(0, 1, 1) == false)
+  if (player->initialize(0, 0, 1) == false)
     return (false);
   _objects.push_back(mod);
   _objects.push_back(mod1);

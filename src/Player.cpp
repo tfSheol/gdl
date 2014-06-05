@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-** Last update Thu Jun  5 15:32:04 2014 teddy fontaine
+** Last update Thu Jun  5 16:07:51 2014 teddy fontaine
 */
 
 #include "Player.hh"
@@ -25,17 +25,15 @@ bool	Player::initialize(__attribute__((unused)) float x,
 			__attribute__((unused)) float z)
 {
   _speed = 5.0f;
+  _angle = 0.0f;
   _x = x;
   _y = y;
   _z = z;
-  _rX = 0;
-  _rY = 0;
-  _rZ = 0;
   _model.load(_modelPath);
   _trans = glm::scale(glm::rotate(glm::translate(
 				       glm::mat4(1),
 				       glm::vec3(_x, _y, _z)),
-				  0.0f,
+				  _angle,
 				  glm::vec3(0, 1, 0)),
 		      glm::vec3(0.001f, 0.001f, 0.001f));
 
@@ -56,30 +54,30 @@ void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
   {
     _anim = "START";
     _z -= clock.getElapsed() * _speed;
-    _rX = 180.0f;
+    _angle = 180.0f;
   }
   if (input.getKey(SDLK_DOWN))
   {
     _anim = "RUN";
     _z += clock.getElapsed() * _speed;
-    _rX = 0.0f;
+    _angle = 0.0f;
   }
   if (input.getKey(SDLK_LEFT))
   {
     _anim = "RUN";
     _x -= clock.getElapsed() * _speed;
-    _rX = 270.0f;
+    _angle = 270.0f;
   }
   if (input.getKey(SDLK_RIGHT))
   {
     _anim = "RUN";
     _x += clock.getElapsed() * _speed;
-    _rX = 90.0f;
+    _angle = 90.0f;
   }
   _trans = glm::scale(glm::rotate(glm::translate(
 				       glm::mat4(1),
 				       glm::vec3(_x, _y, _z)),
-				  _rX,
+				  _angle,
 				  glm::vec3(0, 1, 0)),
 		      glm::vec3(0.001f, 0.001f, 0.001f));
   if (_model.getAnimationFrameNumber(0) == 121)

@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-** Last update Thu Jun  5 15:33:12 2014 teddy fontaine
+** Last update Thu Jun  5 16:10:16 2014 teddy fontaine
 */
 
 #include "Bonus.hh"
@@ -28,9 +28,6 @@ bool	Bonus::initialize(__attribute__((unused)) float x,
   _x = x;
   _y = y;
   _z = z;
-  _rX = 0;
-  _rY = 0;
-  _rZ = 0;
   _model.load(_modelPath);
   _trans = glm::scale(glm::rotate(glm::translate(
 				       glm::mat4(1),

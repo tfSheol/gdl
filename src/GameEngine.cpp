@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 15:51:01 2014 teddy fontaine
-** Last update Tue Jun  3 14:40:49 2014 teddy fontaine
+** Last update Thu Jun  5 12:06:39 2014 teddy fontaine
 */
 
 #include <iostream>
@@ -23,7 +23,7 @@ GameEngine::GameEngine()
  */
 bool		GameEngine::initialize()
 {
-  if (!this->start(1280, 960, "My bomberman!"))
+  if (!start(1280, 960, "My bomberman!"))
     return false;
   glEnable(GL_DEPTH_TEST);
   if (!_shader.load("./shaders/basic.fp", GL_FRAGMENT_SHADER)
@@ -40,7 +40,7 @@ bool		GameEngine::initialize()
   _shader.setUniform("view", transformation);
   _shader.setUniform("projection", projection);
 
-  if (this->scene() == false)
+  if (scene() == false)
     return (false);
 
   return (true);
@@ -51,7 +51,7 @@ bool		GameEngine::initialize()
  */
 SDL_Window	*GameEngine::getWindow()
 {
-  return (this->_window);
+  return (_window);
 }
 
 
@@ -70,6 +70,7 @@ bool		GameEngine::update()
   // std::cout << (int)pos[1] << std::endl;
   this->updateClock(_clock);
   this->updateInputs(_input);
+  //a changer en while !!
   for (size_t i = 0; i < _objects.size(); ++i)
     _objects[i]->update(_clock, _input);
 
@@ -83,6 +84,7 @@ void		GameEngine::draw()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   _shader.bind();
+  //a changer en while !!
   for (size_t i = 0; i < _objects.size(); ++i)
     _objects[i]->draw(_shader, _clock);
   this->flush();
@@ -93,6 +95,7 @@ void		GameEngine::draw()
  */
 GameEngine::~GameEngine()
 {
+  //a changer en while !!
   for (size_t i = 0; i < _objects.size(); ++i)
     delete _objects[i];
 }

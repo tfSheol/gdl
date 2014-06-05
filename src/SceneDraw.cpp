@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Wed May 21 11:27:28 2014 teddy fontaine
-** Last update Tue Jun  3 15:08:32 2014 teddy fontaine
+** Last update Thu Jun  5 12:09:32 2014 teddy fontaine
 */
 
 #include "GameEngine.hh"
@@ -20,12 +20,12 @@ bool		GameEngine::scene()
 
   if (cam->initialize(1, 1, 1) == false)
     return (false);
-  _objects.push_back(cam);
+  _objeclts.push_back(cam);
 
 
-/*  if (this->showHud() == false)
+/*  if (showHud() == false)
     return (false);*/
-/*  if (this->cubeDraw() == false)
+/*  if (cubeDraw() == false)
     return (false);*/
 
   AObject *mod = new Mod("./assets/bomb.fbx");

@@ -5,7 +5,7 @@
 ** Login   <sheol@epitech.net>
 **
 ** Started on  Sat May 24 21:07:44 2014 teddy fontaine
-** Last update Wed May 28 10:45:48 2014 teddy fontaine
+** Last update Tue Jun  3 12:46:42 2014 teddy fontaine
 */
 
 #ifndef IMG_HH_
@@ -20,9 +20,13 @@ class Img : public AObject
     SDL_Surface		*_img;
 
   private:
-    int			_x;
-    int			_y;
+    float		_x;
+    float		_y;
+    float		_z;
     std::string		_filepath;
+//    GLuint		_texture;
+    gdl::Texture	_texture;
+    gdl::Geometry	_geometry;
     SDL_Surface		*loadImage();
     void		applySurface();
 

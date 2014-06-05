@@ -5,7 +5,7 @@
 ** Login   <nguye_1@epitech.net>
 **
 ** Started on  Tue May 20 10:45:19 2014 Alexandre NGUYEN
-// Last update Wed May 21 14:48:39 2014 Alexandre NGUYEN
+** Last update Mon Jun  2 14:59:51 2014 teddy fontaine
 */
 
 #ifndef CUBE_HH_

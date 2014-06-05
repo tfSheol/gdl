@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 15:51:01 2014 teddy fontaine
-** Last update Wed May 28 10:45:20 2014 teddy fontaine
+** Last update Tue Jun  3 14:40:49 2014 teddy fontaine
 */
 
 #include <iostream>
@@ -34,7 +34,7 @@ bool		GameEngine::initialize()
   glm::mat4 projection;
   glm::mat4 transformation;
   projection = glm::perspective(60.0f, 800.0f / 600.0f, 0.1f, 100.0f);
-  transformation = glm::lookAt(glm::vec3(0, 3, -3), glm::vec3(0, 3, 0), glm::vec3(0, 1, 0));
+  transformation = glm::lookAt(glm::vec3(1, 1, 1), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 
   _shader.bind();
   _shader.setUniform("view", transformation);
@@ -42,7 +42,6 @@ bool		GameEngine::initialize()
 
   if (this->scene() == false)
     return (false);
-  this->_time = TIME_CLOCK;
 
   return (true);
 }
@@ -86,13 +85,6 @@ void		GameEngine::draw()
   _shader.bind();
   for (size_t i = 0; i < _objects.size(); ++i)
     _objects[i]->draw(_shader, _clock);
-  if (this->_time == TIME_CLOCK)
-    {
-      SDL_UpdateWindowSurface(this->_window);
-      this->_time = 0;
-    }
-  SDL_Delay(100);
-  this->_time += 1;
   this->flush();
 }
 

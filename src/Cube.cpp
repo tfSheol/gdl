@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Wed May 21 13:35:02 2014 teddy fontaine
-// Last update Wed May 21 16:10:22 2014 Alexandre NGUYEN
+** Last update Mon Jun  2 16:14:32 2014 teddy fontaine
 */
 
 #include "Cube.hh"

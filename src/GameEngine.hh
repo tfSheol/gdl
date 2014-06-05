@@ -5,7 +5,7 @@
 ** Login   <nguye_1@epitech.net>
 **
 ** Started on  Thu May 15 15:55:43 2014 Alexandre NGUYEN
-** Last update Wed May 28 10:45:53 2014 teddy fontaine
+** Last update Tue Jun  3 15:05:54 2014 teddy fontaine
 */
 
 #include <Game.hh>
@@ -14,6 +14,9 @@
 #include "Cube.hh"
 #include "Carre.hh"
 #include "Img.hh"
+#include "Mod.hh"
+#include "Player.hh"
+#include "Cam.hh"
 
 #ifndef GAMEENGINE_HH_
 # define GAMEENGINE_HH_
@@ -28,6 +31,7 @@ class GameEngine : public gdl::Game, public gdl::SdlContext
     gdl::BasicShader		_shader;
     std::vector<AObject*>	_objects;
     int				_time;
+    int				_type;
     SDL_Surface			*loadImage(std::string filepath);
     void			applySurface(int x,int y, SDL_Surface* source,
 						 SDL_Window* destination, SDL_Rect *clip);

@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 17:34:37 2014 teddy fontaine
-** Last update Sat May 24 22:50:28 2014 teddy fontaine
+** Last update Tue Jun  3 12:43:36 2014 teddy fontaine
 */
 
 #include "AObject.hh"
@@ -43,6 +43,14 @@ bool		AObject::initialize(__attribute__((unused))float x, __attribute__((unused)
  */
 void		AObject::update(__attribute__((unused))gdl::Clock const &clock, __attribute__((unused))gdl::Input &input)
 {
+}
+
+/*
+ * Retourne le z de la cam
+ */
+float		AObject::getCamZ()
+{
+  return (1);
 }
 
 /*

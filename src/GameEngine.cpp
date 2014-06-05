@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 15:51:01 2014 teddy fontaine
-** Last update Thu Jun  5 12:06:39 2014 teddy fontaine
+** Last update Thu Jun  5 16:19:01 2014 teddy fontaine
 */
 
 #include <iostream>
@@ -61,19 +61,15 @@ SDL_Window	*GameEngine::getWindow()
  */
 bool		GameEngine::update()
 {
+  size_t	i;
+
+  i = -1;
   if (_input.getKey(SDLK_ESCAPE) || _input.getInput(SDL_QUIT))
     return false;
-  glm::ivec2 pos;
-  pos = _input.getMousePosition();
-
-  // std::cout << (int)pos[0] << std::endl;
-  // std::cout << (int)pos[1] << std::endl;
-  this->updateClock(_clock);
-  this->updateInputs(_input);
-  //a changer en while !!
-  for (size_t i = 0; i < _objects.size(); ++i)
+  updateClock(_clock);
+  updateInputs(_input);
+  while (++i < _objects.size())
     _objects[i]->update(_clock, _input);
-
   return (true);
 }
 
@@ -82,10 +78,12 @@ bool		GameEngine::update()
  */
 void		GameEngine::draw()
 {
+  size_t	i;
+
+  i = -1;
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   _shader.bind();
-  //a changer en while !!
-  for (size_t i = 0; i < _objects.size(); ++i)
+  while (++i < _objects.size())
     _objects[i]->draw(_shader, _clock);
   this->flush();
 }
@@ -95,7 +93,9 @@ void		GameEngine::draw()
  */
 GameEngine::~GameEngine()
 {
-  //a changer en while !!
-  for (size_t i = 0; i < _objects.size(); ++i)
+  size_t	i;
+
+  i = -1;
+  while (++i < _objects.size())
     delete _objects[i];
 }

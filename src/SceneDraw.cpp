@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Wed May 21 11:27:28 2014 teddy fontaine
-** Last update Thu Jun  5 16:12:22 2014 teddy fontaine
+** Last update Thu Jun  5 16:16:15 2014 teddy fontaine
 */
 
 #include "GameEngine.hh"
@@ -18,7 +18,7 @@ bool		GameEngine::scene()
 {
   AObject *cam = new Cam();
 
-  if (cam->initialize(1, 1, 1) == false)
+  if (cam->initialize(1, 1, 5) == false)
     return (false);
   _objects.push_back(cam);
 

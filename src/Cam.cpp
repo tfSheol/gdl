@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 18:35:52 2014 teddy fontaine
-** Last update Tue Jun  3 14:36:50 2014 teddy fontaine
+** Last update Thu Jun  5 16:21:20 2014 teddy fontaine
 */
 
 #include "Cam.hh"
@@ -47,9 +47,9 @@ void	Cam::update(gdl::Clock const &clock, gdl::Input &input)
     _rX -= _speed * clock.getElapsed();
   }
   if (input.getKey(SDLK_r))
-    _z += _speed * clock.getElapsed();
-  if (input.getKey(SDLK_c))
     _z -= _speed * clock.getElapsed();
+  if (input.getKey(SDLK_c))
+    _z += _speed * clock.getElapsed();
   if (input.getKey(SDLK_a))
     _rX += _speed * clock.getElapsed();
   if (input.getKey(SDLK_e))
@@ -69,7 +69,10 @@ void	Cam::update(gdl::Clock const &clock, gdl::Input &input)
 void	Cam::draw(__attribute__((unused)) gdl::AShader &shader,
 		  __attribute__((unused)) gdl::Clock const &clock)
 {
-  shader.setUniform("view", glm::lookAt(glm::vec3(_x, _y, _z + 1), glm::vec3(_rX, _rY, _rZ), glm::vec3(0, 1, 0)));
+  shader.setUniform("view", glm::lookAt(
+		      glm::vec3(_x, _y, _z + 1),
+		      glm::vec3(_rX, _rY, _rZ),
+		      glm::vec3(0, 1, 0)));
 }
 
 float	Cam::getCamZ()

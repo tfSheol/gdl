@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-** Last update Thu Jun  5 11:37:49 2014 teddy fontaine
+** Last update Thu Jun  5 12:02:41 2014 teddy fontaine
 */
 
 #include "Player.hh"
@@ -91,6 +91,5 @@ void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
 void	Player::draw(__attribute__((unused)) gdl::AShader &shader,
 		  __attribute__((unused)) gdl::Clock const &clock)
 {
-//  _model->setCurrentSubAnim("RUN", true);
   this->_model->draw(shader, _trans, clock.getElapsed());
 }

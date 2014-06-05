@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-** Last update Tue Jun  3 15:02:22 2014 teddy fontaine
+** Last update Thu Jun  5 12:02:18 2014 teddy fontaine
 */
 
 #include "Mod.hh"
@@ -30,8 +30,8 @@ bool	Mod::initialize(__attribute__((unused)) float x,
   _rX = 0;
   _rY = 0;
   _rZ = 0;
-  this->_model = new gdl::Model();
-  this->_model->load(_modelPath);
+  _model = new gdl::Model();
+  _model->load(_modelPath);
   _trans = glm::scale(glm::translate(glm::rotate(
 				       glm::mat4(1),
 				       90.0f,
@@ -49,5 +49,5 @@ void	Mod::update(__attribute__((unused)) gdl::Clock const &clock,
 void	Mod::draw(__attribute__((unused)) gdl::AShader &shader,
 		  __attribute__((unused)) gdl::Clock const &clock)
 {
-  this->_model->draw(shader, _trans, clock.getElapsed());
+  _model->draw(shader, _trans, clock.getElapsed());
 }

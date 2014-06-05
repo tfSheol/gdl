@@ -5,15 +5,15 @@
 ** Login   <sheol@epitech.net>
 **
 ** Started on  Sat May 24 21:05:38 2014 teddy fontaine
-** Last update Tue Jun  3 12:47:34 2014 teddy fontaine
+** Last update Thu Jun  5 12:03:37 2014 teddy fontaine
 */
 
 #include "Img.hh"
 
 Img::Img(SDL_Window *window, std::string path)
 {
-  this->_filepath = path;
-  this->_window = window;
+  _filepath = path;
+  _window = window;
 }
 
 Img::~Img()
@@ -27,9 +27,9 @@ Img::~Img()
  */
 bool		Img::initialize(float x, float y, __attribute__((unused)) float z)
 {
-  this->_x = x;
-  this->_y = y;
-  this->_z = z;
+  _x = x;
+  _y = y;
+  _z = z;
 /*  if ((this->_img = this->loadImage()) == NULL)
   {
     fprintf(stdout,"echec de chargement du sprite (%s)\n", SDL_GetError());
@@ -150,7 +150,7 @@ void		Img::applySurface()
 {
   SDL_Rect	offset;
 
-  offset.x = this->_x;
-  offset.y = this->_y;
+  offset.x = _x;
+  offset.y = _y;
   SDL_BlitSurface(this->_img, NULL, SDL_GetWindowSurface(this->_window), &offset);
 }

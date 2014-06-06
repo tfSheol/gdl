@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-// Last update Thu Jun  5 17:51:07 2014 peyrot_m
+** Last update Fri Jun  6 05:18:15 2014 teddy fontaine
 */
 
 #include "Player.hh"
@@ -20,7 +20,7 @@
   glm::ivec2                    comp_pos;
 
 
-  if (this->Joy.Joystick_check() > 0 &&			
+  if (this->Joy.Joystick_check() > 0 &&
       this->Joy.Joystick_for_menu(this->pos) > 0)
     this->pos = this->Joy.Joystick_new_pos();
   this->comp_pos = input.getMousePosition();
@@ -110,10 +110,11 @@
 
 
 
-Player::Player(std::string path)
+Player::Player(int idJoy, std::string path)
 {
   _modelPath = "./assets/marvin.fbx";
   _textureMod = path;
+  _idJoy = idJoy;
 }
 
 Player::~Player()
@@ -121,14 +122,22 @@ Player::~Player()
 }
 
 bool	Player::initialize(__attribute__((unused)) float x,
-			__attribute__((unused)) float y,
-			__attribute__((unused)) float z)
+			   __attribute__((unused)) float y,
+			   __attribute__((unused)) float z)
 {
   _speed = 5.0f;
   _angle = 0.0f;
   _x = x;
   _y = y;
   _z = z;
+  _type = 5;
+  _objs.push_back(_type);
+  _objs.push_back((int)false);
+  _objs.push_back((int)false);
+  _objs.push_back((int)false);
+  _objs.push_back((int)false);
+  _objs.push_back((int)false);
+  _objs.push_back((int)false);
   _model.load(_modelPath);
   _trans = glm::scale(glm::rotate(glm::translate(
 				       glm::mat4(1),
@@ -148,32 +157,54 @@ bool	Player::initialize(__attribute__((unused)) float x,
 }
 
 void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
-		    __attribute__((unused)) gdl::Input &input)
+		       __attribute__((unused)) gdl::Input &input)
 {
-  if (input.getKey(SDLK_UP))
+  float	z;
+  float	x;
+  int	a;
+  int	pause;
+
+  rezVector();
+  if (_joystick.joystickForGame(_idJoy) > 0)
+  {
+    SDL_JoystickUpdate();
+    x = SDL_JoystickGetAxis(_joystick.getJoy(), 0);
+    z = SDL_JoystickGetAxis(_joystick.getJoy(), 1);
+    a = SDL_JoystickGetButton(_joystick.getJoy(), 0);
+    pause = SDL_JoystickGetButton(_joystick.getJoy(), 7);
+  }
+  if (input.getKey(SDLK_UP) || z < -10000)
   {
     _anim = "START";
     _z -= clock.getElapsed() * _speed;
     _angle = 180.0f;
+    updateVector(1);
   }
-  if (input.getKey(SDLK_DOWN))
+  if (input.getKey(SDLK_DOWN) || z > 10000)
   {
     _anim = "RUN";
     _z += clock.getElapsed() * _speed;
     _angle = 0.0f;
+    updateVector(2);
   }
-  if (input.getKey(SDLK_LEFT))
+  if (input.getKey(SDLK_LEFT) || x < -10000)
   {
     _anim = "RUN";
     _x -= clock.getElapsed() * _speed;
     _angle = 270.0f;
+    updateVector(3);
   }
-  if (input.getKey(SDLK_RIGHT))
+  if (input.getKey(SDLK_RIGHT) || x > 10000)
   {
     _anim = "RUN";
     _x += clock.getElapsed() * _speed;
     _angle = 90.0f;
+    updateVector(4);
   }
+  if (input.getKey(SDLK_SPACE) || a < 0)
+    updateVector(5);
+  if (input.getKey(SDLK_m) || pause < 0)
+    updateVector(6);
   _trans = glm::scale(glm::rotate(glm::translate(
 				       glm::mat4(1),
 				       glm::vec3(_x, _y, _z)),
@@ -186,7 +217,76 @@ void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
 }
 
 void	Player::draw(__attribute__((unused)) gdl::AShader &shader,
-		  __attribute__((unused)) gdl::Clock const &clock)
+		     __attribute__((unused)) gdl::Clock const &clock)
 {
   _model.draw(shader, _trans, clock.getElapsed());
 }
+
+std::vector<int>	Player::getObjs()
+{
+  return (_objs);
+}
+
+void			Player::setObjs(__attribute__((unused)) std::vector<int> objs)
+{
+
+}
+
+void			Player::updateVector(int type)
+{
+  size_t		i;
+
+  i = -1;
+  while (++i < _objs.size())
+  {
+    if (type == (int)i)
+      _objs[i] = !(_objs[i]);
+  }
+}
+
+void			Player::rezVector()
+{
+  size_t		i;
+
+  i = -1;
+  while (++i < _objs.size())
+  {
+    _objs[i] = (int)false;
+  }
+}
+
+/*int	Player::getType()
+{
+  return (_type);
+}
+
+int	Player::getTop()
+{
+  return (_top);
+}
+
+int	Player::getBot()
+{
+  return (_bot);
+}
+
+int	Player::getRight()
+{
+  return (_right);
+}
+
+int	Player::getLeft()
+{
+  return (_left);
+}
+
+int	Player::getBombe()
+{
+  return (_bombe);
+}
+
+int	Player::getPause()
+{
+  return (
+}
+*/

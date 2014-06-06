@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Wed May 21 13:35:02 2014 teddy fontaine
-// Last update Fri May 23 16:55:11 2014 Alexandre NGUYEN
+** Last update Thu Jun  5 18:42:32 2014 teddy fontaine
 */
 
 #include "Carre.hh"

@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 15:51:01 2014 teddy fontaine
-** Last update Thu Jun  5 16:19:01 2014 teddy fontaine
+** Last update Fri Jun  6 05:10:23 2014 teddy fontaine
 */
 
 #include <iostream>
@@ -59,9 +59,11 @@ SDL_Window	*GameEngine::getWindow()
  * update des objets
  * gestion des events
  */
-bool		GameEngine::update()
+bool			GameEngine::update()
 {
-  size_t	i;
+  size_t		i;
+  size_t		x;
+  std::vector<int>	objs;
 
   i = -1;
   if (_input.getKey(SDLK_ESCAPE) || _input.getInput(SDL_QUIT))
@@ -69,7 +71,16 @@ bool		GameEngine::update()
   updateClock(_clock);
   updateInputs(_input);
   while (++i < _objects.size())
+  {
+    objs = _objects[i]->getObjs();
+    x = -1;
+    while (++x < objs.size())
+    {
+      std::cout << objs[x] << std::endl;
+    }
+    std::cout << "___________" << std::endl;
     _objects[i]->update(_clock, _input);
+  }
   return (true);
 }
 

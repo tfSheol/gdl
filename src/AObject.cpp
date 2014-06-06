@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 17:34:37 2014 teddy fontaine
-** Last update Tue Jun  3 12:43:36 2014 teddy fontaine
+** Last update Fri Jun  6 00:43:44 2014 teddy fontaine
 */
 
 #include "AObject.hh"
@@ -36,6 +36,16 @@ bool		AObject::initialize(__attribute__((unused))float x, __attribute__((unused)
 bool		AObject::initialize(__attribute__((unused))float x, __attribute__((unused))float y, __attribute__((unused))float z, __attribute__((unused))float size_x, __attribute__((unused))float size_y, __attribute__((unused))float size_z, __attribute__((unused))std::string texture_name)
 {
   return (true);
+}
+
+std::vector<int>	AObject::getObjs()
+{
+  return (std::vector<int>(false));
+}
+
+void			AObject::setObjs(__attribute__((unused)) std::vector<int> objs)
+{
+
 }
 
 /*
@@ -91,3 +101,4 @@ glm::mat4	AObject::getTransformation()
 
   return (transform);
 }
+

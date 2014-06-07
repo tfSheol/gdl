@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 17:34:37 2014 teddy fontaine
-** Last update Fri Jun  6 00:43:44 2014 teddy fontaine
+** Last update Sat Jun  7 11:19:57 2014 teddy fontaine
 */
 
 #include "AObject.hh"
@@ -43,7 +43,7 @@ std::vector<int>	AObject::getObjs()
   return (std::vector<int>(false));
 }
 
-void			AObject::setObjs(__attribute__((unused)) std::vector<int> objs)
+void			AObject::setObjs(__attribute__((unused)) int type)
 {
 
 }

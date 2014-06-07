@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 15:51:01 2014 teddy fontaine
-** Last update Fri Jun  6 05:10:23 2014 teddy fontaine
+** Last update Sat Jun  7 12:12:52 2014 teddy fontaine
 */
 
 #include <iostream>
@@ -76,7 +76,11 @@ bool			GameEngine::update()
     x = -1;
     while (++x < objs.size())
     {
-      std::cout << objs[x] << std::endl;
+      if (objs[0] == 5)
+      {
+	if (objs[1] < objs[2])
+	  std::cout << objs[x] << std::endl;
+      }
     }
     std::cout << "___________" << std::endl;
     _objects[i]->update(_clock, _input);

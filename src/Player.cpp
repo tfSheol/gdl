@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-** Last update Fri Jun  6 05:18:15 2014 teddy fontaine
+** Last update Sat Jun  7 12:06:47 2014 teddy fontaine
 */
 
 #include "Player.hh"
@@ -119,6 +119,7 @@ Player::Player(int idJoy, std::string path)
 
 Player::~Player()
 {
+  _objs.clear();
 }
 
 bool	Player::initialize(__attribute__((unused)) float x,
@@ -132,6 +133,8 @@ bool	Player::initialize(__attribute__((unused)) float x,
   _z = z;
   _type = 5;
   _objs.push_back(_type);
+  _objs.push_back(_idJoy);
+  _objs.push_back(_joystick.joystickCheck());
   _objs.push_back((int)false);
   _objs.push_back((int)false);
   _objs.push_back((int)false);
@@ -149,7 +152,7 @@ bool	Player::initialize(__attribute__((unused)) float x,
   _model.createSubAnim(0, "RESET", 0, 0);
   _model.createSubAnim(0, "START", 0, 36);
   _model.createSubAnim(0, "RUN", 36, 53);
-  _model.createSubAnim(0, "END", 53, 120);
+  _model.createSubAnim(0, "END", 53, 121);
 
   _model.setCurrentSubAnim("START");
 
@@ -164,62 +167,66 @@ void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
   int	a;
   int	pause;
 
-  rezVector();
-  if (_joystick.joystickForGame(_idJoy) > 0)
+  if (_idJoy < _joystick.joystickCheck())
   {
-    SDL_JoystickUpdate();
-    x = SDL_JoystickGetAxis(_joystick.getJoy(), 0);
-    z = SDL_JoystickGetAxis(_joystick.getJoy(), 1);
-    a = SDL_JoystickGetButton(_joystick.getJoy(), 0);
-    pause = SDL_JoystickGetButton(_joystick.getJoy(), 7);
-  }
-  if (input.getKey(SDLK_UP) || z < -10000)
-  {
-    _anim = "START";
-    _z -= clock.getElapsed() * _speed;
-    _angle = 180.0f;
-    updateVector(1);
-  }
-  if (input.getKey(SDLK_DOWN) || z > 10000)
-  {
-    _anim = "RUN";
-    _z += clock.getElapsed() * _speed;
-    _angle = 0.0f;
-    updateVector(2);
-  }
-  if (input.getKey(SDLK_LEFT) || x < -10000)
-  {
-    _anim = "RUN";
-    _x -= clock.getElapsed() * _speed;
-    _angle = 270.0f;
-    updateVector(3);
-  }
-  if (input.getKey(SDLK_RIGHT) || x > 10000)
-  {
-    _anim = "RUN";
-    _x += clock.getElapsed() * _speed;
-    _angle = 90.0f;
-    updateVector(4);
-  }
-  if (input.getKey(SDLK_SPACE) || a < 0)
-    updateVector(5);
-  if (input.getKey(SDLK_m) || pause < 0)
-    updateVector(6);
-  _trans = glm::scale(glm::rotate(glm::translate(
-				       glm::mat4(1),
-				       glm::vec3(_x, _y, _z)),
-				  _angle,
-				  glm::vec3(0, 1, 0)),
-		      glm::vec3(0.001f, 0.001f, 0.001f));
-  if (_model.getAnimationFrameNumber(0) == 121)
-    _model.setCurrentSubAnim(_anim, true);
+    rezObjs();
+    if (_joystick.joystickForGame(_idJoy) > 0)
+    {
+      SDL_JoystickUpdate();
+      x = SDL_JoystickGetAxis(_joystick.getJoy(), 0);
+      z = SDL_JoystickGetAxis(_joystick.getJoy(), 1);
+      a = SDL_JoystickGetButton(_joystick.getJoy(), 0);
+      pause = SDL_JoystickGetButton(_joystick.getJoy(), 7);
+    }
+    if ((input.getKey(SDLK_UP) && _idJoy == 0) || z < -10000)
+    {
+      _anim = "START";
+      _z -= clock.getElapsed() * _speed;
+      _angle = 180.0f;
+      setObjs(3);
+    }
+    if ((input.getKey(SDLK_DOWN) && _idJoy == 0) || z > 10000)
+    {
+      _anim = "RUN";
+      _z += clock.getElapsed() * _speed;
+      _angle = 0.0f;
+      setObjs(4);
+    }
+    if ((input.getKey(SDLK_LEFT) && _idJoy == 0) || x < -10000)
+    {
+      _anim = "RUN";
+      _x -= clock.getElapsed() * _speed;
+      _angle = 270.0f;
+      setObjs(5);
+    }
+    if ((input.getKey(SDLK_RIGHT) && _idJoy == 0) || x > 10000)
+    {
+      _anim = "RUN";
+      _x += clock.getElapsed() * _speed;
+      _angle = 90.0f;
+      setObjs(6);
+    }
+    if ((input.getKey(SDLK_SPACE) && _idJoy == 0) || a > 0)
+      setObjs(7);
+    if (input.getKey(SDLK_m) || pause > 0)
+      setObjs(8);
+    _trans = glm::scale(glm::rotate(glm::translate(
+				      glm::mat4(1),
+				      glm::vec3(_x, _y, _z)),
+				    _angle,
+				    glm::vec3(0, 1, 0)),
+			glm::vec3(0.001f, 0.001f, 0.001f));
+    if (_model.getAnimationFrameNumber(0) == 121)
+      _model.setCurrentSubAnim(_anim, true);
 //  std::cout << _model.getAnimationFrameNumber(0) << std::endl;
+  }
 }
 
 void	Player::draw(__attribute__((unused)) gdl::AShader &shader,
 		     __attribute__((unused)) gdl::Clock const &clock)
 {
-  _model.draw(shader, _trans, clock.getElapsed());
+  if (_idJoy < _joystick.joystickCheck())
+    _model.draw(shader, _trans, clock.getElapsed());
 }
 
 std::vector<int>	Player::getObjs()
@@ -227,12 +234,7 @@ std::vector<int>	Player::getObjs()
   return (_objs);
 }
 
-void			Player::setObjs(__attribute__((unused)) std::vector<int> objs)
-{
-
-}
-
-void			Player::updateVector(int type)
+void			Player::setObjs(int type)
 {
   size_t		i;
 
@@ -244,49 +246,16 @@ void			Player::updateVector(int type)
   }
 }
 
-void			Player::rezVector()
+void			Player::rezObjs()
 {
   size_t		i;
 
   i = -1;
   while (++i < _objs.size())
   {
-    _objs[i] = (int)false;
+    if (i == 2)
+      _objs[i] = _joystick.joystickCheck();
+    else if (i != 0 && i != 1)
+      _objs[i] = (int)false;
   }
 }
-
-/*int	Player::getType()
-{
-  return (_type);
-}
-
-int	Player::getTop()
-{
-  return (_top);
-}
-
-int	Player::getBot()
-{
-  return (_bot);
-}
-
-int	Player::getRight()
-{
-  return (_right);
-}
-
-int	Player::getLeft()
-{
-  return (_left);
-}
-
-int	Player::getBombe()
-{
-  return (_bombe);
-}
-
-int	Player::getPause()
-{
-  return (
-}
-*/

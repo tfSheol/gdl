@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 18:35:52 2014 teddy fontaine
-** Last update Thu Jun  5 16:21:20 2014 teddy fontaine
+** Last update Sat Jun  7 11:25:45 2014 teddy fontaine
 */
 
 #include "Cam.hh"
@@ -26,34 +26,34 @@ bool	Cam::initialize(__attribute__((unused)) float x,
 
 void	Cam::update(gdl::Clock const &clock, gdl::Input &input)
 {
-  if (input.getKey(SDLK_z))
+  if (input.getKey(SDLK_r))
   {
     _y += _speed * clock.getElapsed();
     _rY += _speed * clock.getElapsed();
   }
-  if (input.getKey(SDLK_s))
+  if (input.getKey(SDLK_c))
   {
     _y -= _speed * clock.getElapsed();
     _rY -= _speed * clock.getElapsed();
   }
   if (input.getKey(SDLK_q))
   {
-    _x += _speed * clock.getElapsed();
-    _rX += _speed * clock.getElapsed();
-  }
-  if (input.getKey(SDLK_d))
-  {
     _x -= _speed * clock.getElapsed();
     _rX -= _speed * clock.getElapsed();
   }
-  if (input.getKey(SDLK_r))
+  if (input.getKey(SDLK_d))
+  {
+    _x += _speed * clock.getElapsed();
+    _rX += _speed * clock.getElapsed();
+  }
+  if (input.getKey(SDLK_z))
     _z -= _speed * clock.getElapsed();
-  if (input.getKey(SDLK_c))
+  if (input.getKey(SDLK_s))
     _z += _speed * clock.getElapsed();
   if (input.getKey(SDLK_a))
-    _rX += _speed * clock.getElapsed();
-  if (input.getKey(SDLK_e))
     _rX -= _speed * clock.getElapsed();
+  if (input.getKey(SDLK_e))
+    _rX += _speed * clock.getElapsed();
 
 /*  std::cout << "______________" << std::endl;
   std::cout << (int)_x << std::endl;

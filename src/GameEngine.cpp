@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 15:51:01 2014 teddy fontaine
-** Last update Sat Jun  7 12:12:52 2014 teddy fontaine
+** Last update Sat Jun  7 17:10:52 2014 teddy fontaine
 */
 
 #include <iostream>
@@ -78,13 +78,14 @@ bool			GameEngine::update()
     {
       if (objs[0] == 5)
       {
-	if (objs[1] < objs[2])
+	if ((objs[1] < objs[2]) || (objs[1] == 0))
 	  std::cout << objs[x] << std::endl;
       }
     }
     std::cout << "___________" << std::endl;
     _objects[i]->update(_clock, _input);
   }
+  objs.clear();
   return (true);
 }
 

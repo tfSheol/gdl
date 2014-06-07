@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 17:34:37 2014 teddy fontaine
-** Last update Sat Jun  7 11:19:57 2014 teddy fontaine
+** Last update Sat Jun  7 15:28:27 2014 teddy fontaine
 */
 
 #include "AObject.hh"
@@ -41,6 +41,10 @@ bool		AObject::initialize(__attribute__((unused))float x, __attribute__((unused)
 std::vector<int>	AObject::getObjs()
 {
   return (std::vector<int>(false));
+//  std::vector<int> objs;
+//  _objs.push_back(1);
+//  return (_objs);
+//  return &(std::vector<int>(false));
 }
 
 void			AObject::setObjs(__attribute__((unused)) int type)

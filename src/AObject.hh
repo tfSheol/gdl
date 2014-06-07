@@ -5,7 +5,7 @@
 ** Login   <nguye_1@epitech.net>
 **
 ** Started on  Thu May 15 16:02:49 2014 Alexandre NGUYEN
-** Last update Sat Jun  7 11:20:27 2014 teddy fontaine
+** Last update Sat Jun  7 15:28:07 2014 teddy fontaine
 */
 
 #include <SdlContext.hh>
@@ -42,9 +42,9 @@ class AObject
     glm::mat4			getTransformation();
 
   protected:
-    glm::vec3 _position;
-    glm::vec3 _rotation;
-    glm::vec3 _scale;
+    glm::vec3		_position;
+    glm::vec3		_rotation;
+    glm::vec3		_scale;
 };
 
 #endif /* !AOBJECT_HH_ */

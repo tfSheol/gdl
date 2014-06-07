@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-** Last update Sat Jun  7 12:06:47 2014 teddy fontaine
+** Last update Sat Jun  7 17:09:10 2014 teddy fontaine
 */
 
 #include "Player.hh"
@@ -167,7 +167,7 @@ void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
   int	a;
   int	pause;
 
-  if (_idJoy < _joystick.joystickCheck())
+  if ((_idJoy < _joystick.joystickCheck()) || (_idJoy == 0))
   {
     rezObjs();
     if (_joystick.joystickForGame(_idJoy) > 0)
@@ -225,7 +225,7 @@ void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
 void	Player::draw(__attribute__((unused)) gdl::AShader &shader,
 		     __attribute__((unused)) gdl::Clock const &clock)
 {
-  if (_idJoy < _joystick.joystickCheck())
+  if ((_idJoy < _joystick.joystickCheck()) || (_idJoy == 0))
     _model.draw(shader, _trans, clock.getElapsed());
 }
 

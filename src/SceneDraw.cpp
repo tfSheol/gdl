@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Wed May 21 11:27:28 2014 teddy fontaine
-** Last update Sat Jun  7 12:36:39 2014 teddy fontaine
+** Last update Sat Jun  7 12:49:44 2014 teddy fontaine
 */
 
 #include "GameEngine.hh"
@@ -32,10 +32,10 @@ bool		GameEngine::scene()
 //  AObject *mod1 = new Mod("./assets/bomb.fbx");
 //  AObject *mod1 = new Bonus("./assets/quad.fbx");
 //  AObject *player = new Bonus("./assets/maure.fbx");
-  AObject *player2 = new Player(1, "./assets/marvin.fbx");
-  AObject *player3 = new Player(2, "./assets/marvin.fbx");
-  AObject *player4 = new Player(0, "./assets/marvin.fbx");
-  AObject *player5 = new Player(3, "./assets/marvin.fbx");
+  AObject *player2 = new Player(0, "./assets/marvin.fbx");
+  AObject *player3 = new Player(1, "./assets/marvin.fbx");
+//  AObject *player4 = new Player(0, "./assets/marvin.fbx");
+//  AObject *player5 = new Player(3, "./assets/marvin.fbx");
 //  AObject *mod2 = new Mod("./assets/marvin.fbx");
 
   /* if (mod->initialize(1, 0, 0) == false)
@@ -48,17 +48,17 @@ bool		GameEngine::scene()
     return (false);
   if (player3->initialize(6, 0, 1) == false)
     return (false);
-  if (player4->initialize(-2, 0, 1) == false)
+/*  if (player4->initialize(-2, 0, 1) == false)
     return (false);
   if (player5->initialize(-2, 0, 1) == false)
-    return (false);
+  return (false);*/
 /*  _objects.push_back(mod);
   _objects.push_back(mod1);
   _objects.push_back(player);*/
   _objects.push_back(player2);
   _objects.push_back(player3);
-  _objects.push_back(player4);
-  _objects.push_back(player5);
+//  _objects.push_back(player4);
+//  _objects.push_back(player5);
 
   return (true);
 }

@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-** Last update Sun Jun  8 12:50:44 2014 teddy fontaine
+** Last update Sun Jun  8 14:38:42 2014 teddy fontaine
 */
 
 #include "Player.hh"
@@ -28,7 +28,7 @@ bool	Player::initialize(__attribute__((unused)) float x,
 {
   _speed = 2.0f;
   _angle = 0.0f;
-  _frame = 0;
+  _frame = 20;
   _anim = false;
   _x = x;
   _y = y;
@@ -52,7 +52,7 @@ bool	Player::initialize(__attribute__((unused)) float x,
 		      glm::vec3(0.001f, 0.001f, 0.001f));
 
   _model.createSubAnim(0, "RESET", 0, 0);
-  _model.createSubAnim(0, "START", 0, 36);
+  _model.createSubAnim(0, "START", 20, 30);
   _model.createSubAnim(0, "RUN", 37, 53);
   _model.createSubAnim(0, "END", 54, 121);
 
@@ -130,37 +130,35 @@ void	Player::draw(__attribute__((unused)) gdl::AShader &shader,
     if (_anim == true)
     {
       std::cout << "START & RUN" << std::endl;
-      if (_frame == 0)
+      if (_frame == 20 || _frame > 45)
+      {
+	if (_frame > 45)
+	  _frame = 21;
 	_model.setCurrentSubAnim("START");
-      if (_frame == 36)
+      }
+      if (_frame == 30)
 	_model.setCurrentSubAnim("RUN");
-      if (_frame == 52)
-	_frame = 36;
+      if (_frame == 45)
+	_frame = 30;
       _frame += 1;
     }
     if (_anim == false)
     {
-/*      if (_frame <= 53)
+      if (_frame > 20 && _frame < 46)
       {
 	std::cout << "END" << std::endl;
 	_model.setCurrentSubAnim("END");
-	_frame = 54;
-	}*/
-      if (_frame >= 36 && _frame < 53)
-      {
-	std::cout << "END" << std::endl;
-	_model.setCurrentSubAnim("END");
-	_frame = 53;
+	_frame = 46;
       }
-      if (_frame >= 53 && _frame <= 121)
+      if (_frame >= 46 && _frame <= 114)
 	_frame += 1;
-      if (_frame >= 121)
+      if (_frame >= 114)
       {
 	std::cout << "RESET" << std::endl;
 	_model.setCurrentSubAnim("RESET");
-	_frame = 0;
+	_frame = 20;
       }
-      if (_frame != 0)
+      if (_frame != 20)
 	_frame += 1;
     }
     std::cout << "<<>>" << std::endl;

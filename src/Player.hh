@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:37:28 2014 teddy fontaine
-** Last update Sat Jun  7 15:29:13 2014 teddy fontaine
+** Last update Sat Jun  7 17:49:22 2014 teddy fontaine
 */
 
 #include <Model.hh>
@@ -50,7 +50,8 @@ class Player : public AObject
     float		_z;
     float		_angle;
     int			_idJoy;
-    std::string		_anim;
+    int			_frame;
+    bool		_anim;
     std::string		_modelPath;
     std::string		_textureMod;
     float		_speed;

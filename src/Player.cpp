@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-** Last update Sun Jun  8 10:28:33 2014 teddy fontaine
+** Last update Sun Jun  8 12:50:44 2014 teddy fontaine
 */
 
 #include "Player.hh"
@@ -26,7 +26,7 @@ bool	Player::initialize(__attribute__((unused)) float x,
 			   __attribute__((unused)) float y,
 			   __attribute__((unused)) float z)
 {
-  _speed = 5.0f;
+  _speed = 2.0f;
   _angle = 0.0f;
   _frame = 0;
   _anim = false;
@@ -53,8 +53,8 @@ bool	Player::initialize(__attribute__((unused)) float x,
 
   _model.createSubAnim(0, "RESET", 0, 0);
   _model.createSubAnim(0, "START", 0, 36);
-  _model.createSubAnim(0, "RUN", 36, 53);
-  _model.createSubAnim(0, "END", 53, 121);
+  _model.createSubAnim(0, "RUN", 37, 53);
+  _model.createSubAnim(0, "END", 54, 121);
 
 //  _model.setCurrentSubAnim("START");
 
@@ -119,22 +119,6 @@ void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
 				    _angle,
 				    glm::vec3(0, 1, 0)),
 			glm::vec3(0.001f, 0.001f, 0.001f));
-    if (_anim == true)
-    {
-      if (_frame == 1)
-	_model.setCurrentSubAnim("RUN");
-    }
-    if (_anim == false)
-    {
-      _model.setCurrentSubAnim("RESET");
-      _frame = 0;
-    }
-    if (_anim == true)
-      _frame += 1;
-    std::cout << "<<>>" << std::endl;
-    std::cout << _frame << std::endl;
-    std::cout << _anim << std::endl;
-    std::cout << "<<>>" << std::endl;
   }
 }
 
@@ -142,7 +126,49 @@ void	Player::draw(__attribute__((unused)) gdl::AShader &shader,
 		     __attribute__((unused)) gdl::Clock const &clock)
 {
   if ((_idJoy < _joystick.joystickCheck()) || (_idJoy == 0))
+  {
+    if (_anim == true)
+    {
+      std::cout << "START & RUN" << std::endl;
+      if (_frame == 0)
+	_model.setCurrentSubAnim("START");
+      if (_frame == 36)
+	_model.setCurrentSubAnim("RUN");
+      if (_frame == 52)
+	_frame = 36;
+      _frame += 1;
+    }
+    if (_anim == false)
+    {
+/*      if (_frame <= 53)
+      {
+	std::cout << "END" << std::endl;
+	_model.setCurrentSubAnim("END");
+	_frame = 54;
+	}*/
+      if (_frame >= 36 && _frame < 53)
+      {
+	std::cout << "END" << std::endl;
+	_model.setCurrentSubAnim("END");
+	_frame = 53;
+      }
+      if (_frame >= 53 && _frame <= 121)
+	_frame += 1;
+      if (_frame >= 121)
+      {
+	std::cout << "RESET" << std::endl;
+	_model.setCurrentSubAnim("RESET");
+	_frame = 0;
+      }
+      if (_frame != 0)
+	_frame += 1;
+    }
+    std::cout << "<<>>" << std::endl;
+    std::cout << _frame << std::endl;
+    std::cout << _anim << std::endl;
+    std::cout << "<<>>" << std::endl;
     _model.draw(shader, _trans, clock.getElapsed());
+  }
 }
 
 std::vector<int>	Player::getObjs()

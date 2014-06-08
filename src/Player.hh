@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:37:28 2014 teddy fontaine
-** Last update Sun Jun  8 10:55:37 2014 teddy fontaine
+** Last update Sun Jun  8 16:28:41 2014 teddy fontaine
 */
 
 #include <Model.hh>
@@ -24,7 +24,7 @@ class Player : public AObject
     void	update(gdl::Clock const &, gdl::Input &);
     void	draw(gdl::AShader &, gdl::Clock const &);
 
-    std::vector<int>		getObjs();
+    std::vector<int>		getObjs() const;
     void			setObjs(int);
 
 /*    int		getType();
@@ -54,6 +54,7 @@ class Player : public AObject
     bool		_anim;
     std::string		_modelPath;
     std::string		_textureMod;
+    gdl::Texture	_texture;
     float		_speed;
     gdl::Model		_model;
     Joystick		_joystick;

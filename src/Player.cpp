@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-** Last update Sun Jun  8 14:38:42 2014 teddy fontaine
+** Last update Sun Jun  8 23:40:44 2014 teddy fontaine
 */
 
 #include "Player.hh"
@@ -26,6 +26,11 @@ bool	Player::initialize(__attribute__((unused)) float x,
 			   __attribute__((unused)) float y,
 			   __attribute__((unused)) float z)
 {
+  if (!_texture.load(_textureMod, true))
+  {
+    std::cerr << "Cannot load the Marvin texture" << std::endl;
+    return (false);
+  }
   _speed = 2.0f;
   _angle = 0.0f;
   _frame = 20;
@@ -54,9 +59,7 @@ bool	Player::initialize(__attribute__((unused)) float x,
   _model.createSubAnim(0, "RESET", 0, 0);
   _model.createSubAnim(0, "START", 20, 30);
   _model.createSubAnim(0, "RUN", 37, 53);
-  _model.createSubAnim(0, "END", 54, 121);
-
-//  _model.setCurrentSubAnim("START");
+  _model.createSubAnim(0, "END", 54, 100);
 
   return (true);
 }
@@ -150,9 +153,9 @@ void	Player::draw(__attribute__((unused)) gdl::AShader &shader,
 	_model.setCurrentSubAnim("END");
 	_frame = 46;
       }
-      if (_frame >= 46 && _frame <= 114)
+      if (_frame >= 46 && _frame <= 93)
 	_frame += 1;
-      if (_frame >= 114)
+      if (_frame >= 93)
       {
 	std::cout << "RESET" << std::endl;
 	_model.setCurrentSubAnim("RESET");
@@ -165,11 +168,16 @@ void	Player::draw(__attribute__((unused)) gdl::AShader &shader,
     std::cout << _frame << std::endl;
     std::cout << _anim << std::endl;
     std::cout << "<<>>" << std::endl;
+    _texture.bind();
+    if (_idJoy == 0)
+      shader.setUniform("color", glm::vec4(0, 1, 0, 1));
+    if (_idJoy == 1)
+      shader.setUniform("color", glm::vec4(1, 1, 0, 1));
     _model.draw(shader, _trans, clock.getElapsed());
   }
 }
 
-std::vector<int>	Player::getObjs()
+std::vector<int>	Player::getObjs() const
 {
   return (_objs);
 }

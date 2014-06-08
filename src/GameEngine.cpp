@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 15:51:01 2014 teddy fontaine
-** Last update Sat Jun  7 17:10:52 2014 teddy fontaine
+** Last update Sun Jun  8 23:39:24 2014 teddy fontaine
 */
 
 #include <iostream>
@@ -39,7 +39,7 @@ bool		GameEngine::initialize()
   _shader.bind();
   _shader.setUniform("view", transformation);
   _shader.setUniform("projection", projection);
-
+  _shader.setUniform("color", glm::vec4(0, 1, 0, 1));
   if (scene() == false)
     return (false);
 

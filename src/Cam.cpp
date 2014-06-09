@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 18:35:52 2014 teddy fontaine
-** Last update Sat Jun  7 11:25:45 2014 teddy fontaine
+** Last update Mon Jun  9 14:54:07 2014 teddy fontaine
 */
 
 #include "Cam.hh"

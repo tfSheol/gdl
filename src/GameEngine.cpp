@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 15:51:01 2014 teddy fontaine
-** Last update Mon Jun  9 10:23:43 2014 teddy fontaine
+** Last update Mon Jun  9 14:55:35 2014 teddy fontaine
 */
 
 #include <iostream>
@@ -33,7 +33,7 @@ bool		GameEngine::initialize()
 
   glm::mat4 projection;
   glm::mat4 transformation;
-  projection = glm::perspective(60.0f, 800.0f / 600.0f, 0.1f, 100.0f);
+  projection = glm::perspective(60.0f, 1280.0f / 960.0f, 0.1f, 100.0f);
   transformation = glm::lookAt(glm::vec3(1, 1, 1), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 
   _shader.bind();
@@ -101,6 +101,20 @@ void		GameEngine::draw()
   _shader.bind();
   while (++i < _objects.size())
     _objects[i]->draw(_shader, _clock);
+  glViewport(0, 0, 1280 / 2, 960);
+  _shader.setUniform("view", glm::lookAt(
+		      glm::vec3(2, 0, 0),
+		      glm::vec3(1, 1, 1),
+		      glm::vec3(0, 1, 0)));
+  i = -1;
+  while (++i < _objects.size())
+    _objects[i]->draw(_shader, _clock);
+  glViewport(1280 / 2, 0, 1280 / 2, 960);
+  _shader.setUniform("view", glm::lookAt(
+		      glm::vec3(0, 0, 0),
+		      glm::vec3(1, 1, 1),
+		      glm::vec3(0, 1, 0)));
+  _shader.setUniform("projection", glm::perspective(60.0f, (1280.0f / 2) / 960.0f, 0.1f, 100.0f));
   this->flush();
 }
 

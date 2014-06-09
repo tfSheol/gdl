@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-** Last update Mon Jun  9 10:25:50 2014 teddy fontaine
+** Last update Mon Jun  9 14:38:09 2014 teddy fontaine
 */
 
 #include "Player.hh"
@@ -60,6 +60,12 @@ bool	Player::initialize(__attribute__((unused)) float x,
   _model.createSubAnim(0, "START", 20, 30);
   _model.createSubAnim(0, "RUN", 37, 53);
   _model.createSubAnim(0, "END", 54, 100);
+
+//  if (_idJoy == 0)
+//    glDepthRangef(200, 50);
+//  if (_idJoy == 1)
+//    glViewport(1280 / 2, 0, 1280 / 2, 960);
+
 
   return (true);
 }
@@ -174,6 +180,7 @@ void	Player::draw(__attribute__((unused)) gdl::AShader &shader,
     if (_idJoy == 1)
       shader.setUniform("color", glm::vec4(1, 1, 0, 1));
     _model.draw(shader, _trans, clock.getElapsed());
+
   }
 }
 

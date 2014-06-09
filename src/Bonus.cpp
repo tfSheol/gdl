@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-** Last update Thu Jun  5 16:10:16 2014 teddy fontaine
+** Last update Mon Jun  9 10:26:00 2014 teddy fontaine
 */
 
 #include "Bonus.hh"
@@ -53,5 +53,6 @@ void	Bonus::update(__attribute__((unused)) gdl::Clock const &clock,
 void	Bonus::draw(__attribute__((unused)) gdl::AShader &shader,
 		  __attribute__((unused)) gdl::Clock const &clock)
 {
+  shader.setUniform("color", glm::vec4(0, 0, 0, 1));
   _model.draw(shader, _trans, clock.getElapsed());
 }

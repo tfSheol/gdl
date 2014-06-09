@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Wed May 21 11:27:28 2014 teddy fontaine
-** Last update Sun Jun  8 15:05:38 2014 teddy fontaine
+** Last update Mon Jun  9 10:25:02 2014 teddy fontaine
 */
 
 #include "GameEngine.hh"
@@ -38,7 +38,10 @@ bool		GameEngine::scene()
   AObject *player3 = new Player(3, "./assets/marvin.fbm/Main_texture_diffuse2.tga");
   AObject *player4 = new Player(4, "./assets/marvin.fbm/Main_texture_diffuse2.tga");
   AObject *player5 = new Player(5, "./assets/marvin.fbm/Main_texture_diffuse2.tga");
+  AObject *bonus0 = new Bonus("./assets/bomb.fbx");
 
+  if (!bonus0->initialize(-1, 0, 0))
+    return (false);
   if (!player0->initialize(-4, 0, 0))
     return (false);
   if (!player1->initialize(-2, 0, 0))
@@ -52,6 +55,7 @@ bool		GameEngine::scene()
   if (!player5->initialize(6, 0, 0))
     return (false);
 
+  _objects.push_back(bonus0);
   _objects.push_back(player0);
   _objects.push_back(player1);
   _objects.push_back(player2);

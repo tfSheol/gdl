@@ -5,16 +5,16 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-** Last update Wed Jun 11 10:58:48 2014 teddy fontaine
+** Last update Wed Jun 11 11:36:23 2014 teddy fontaine
 */
 
 #include "Player.hh"
 
-Player::Player(int idJoy, std::string path)
+Player::Player(int idJoy, int type)
 {
   _modelPath = "./assets/marvin.fbx";
-  _textureMod = path;
   _idJoy = idJoy;
+  _type = type;
 }
 
 Player::~Player()
@@ -26,11 +26,6 @@ bool	Player::initialize(__attribute__((unused)) float x,
 			   __attribute__((unused)) float y,
 			   __attribute__((unused)) float z)
 {
-  if (!_texture.load(_textureMod, true))
-  {
-    std::cerr << "Cannot load the Marvin texture" << std::endl;
-    return (false);
-  }
   _speed = 2.0f;
   _angle = 0.0f;
   _frame = 20;
@@ -38,7 +33,6 @@ bool	Player::initialize(__attribute__((unused)) float x,
   _x = x;
   _y = y;
   _z = z;
-  _type = 5;
   _objs.push_back(_type);
   _objs.push_back(_idJoy);
   _objs.push_back(_joystick.joystickCheck());
@@ -55,12 +49,10 @@ bool	Player::initialize(__attribute__((unused)) float x,
 				  _angle,
 				  glm::vec3(0, 1, 0)),
 		      glm::vec3(0.002f, 0.002f, 0.002f));
-
   _model.createSubAnim(0, "RESET", 0, 0);
   _model.createSubAnim(0, "START", 20, 30);
   _model.createSubAnim(0, "RUN", 37, 53);
   _model.createSubAnim(0, "END", 54, 100);
-
   return (true);
 }
 
@@ -74,7 +66,7 @@ void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
 
   _anim = false;
   rezObjs();
-  if ((_idJoy < _joystick.joystickCheck()) || (_idJoy == 0))
+  if (((_idJoy < _joystick.joystickCheck()) || (_idJoy == 0)) || _type == 3)
   {
     if (_joystick.joystickForGame(_idJoy) > 0)
     {
@@ -84,37 +76,37 @@ void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
       a = SDL_JoystickGetButton(_joystick.getJoy(), 0);
       pause = SDL_JoystickGetButton(_joystick.getJoy(), 7);
     }
-    if ((input.getKey(SDLK_UP) && _idJoy == 0) || z < -10000)
+    if (((input.getKey(SDLK_UP) && _idJoy == 0) || z < -10000) || _objs[3] == (int)true)
     {
       _anim = true;
       _z -= clock.getElapsed() * _speed;
       _angle = 180.0f;
       setObjs(3);
     }
-    if ((input.getKey(SDLK_DOWN) && _idJoy == 0) || z > 10000)
+    if (((input.getKey(SDLK_DOWN) && _idJoy == 0) || z > 10000) || _objs[4] == (int)true)
     {
       _anim = true;
       _z += clock.getElapsed() * _speed;
       _angle = 0.0f;
       setObjs(4);
     }
-    if ((input.getKey(SDLK_LEFT) && _idJoy == 0) || x < -10000)
+    if (((input.getKey(SDLK_LEFT) && _idJoy == 0) || x < -10000) || _objs[6] == (int)true)
     {
       _anim = true;
       _x -= clock.getElapsed() * _speed;
       _angle = 270.0f;
-      setObjs(5);
+      setObjs(60);
     }
-    if ((input.getKey(SDLK_RIGHT) && _idJoy == 0) || x > 10000)
+    if (((input.getKey(SDLK_RIGHT) && _idJoy == 0) || x > 10000) || _objs[5] == (int)true)
     {
       _anim = true;
       _x += clock.getElapsed() * _speed;
       _angle = 90.0f;
-      setObjs(6);
+      setObjs(5);
     }
-    if ((input.getKey(SDLK_SPACE) && _idJoy == 0) || a > 0)
+    if (((input.getKey(SDLK_SPACE) && _idJoy == 0) || a > 0) || _objs[7] == (int)true)
       setObjs(7);
-    if (input.getKey(SDLK_m) || pause > 0)
+    if ((input.getKey(SDLK_m) || pause > 0) || _objs[8] == (int)true)
       setObjs(8);
     _trans = glm::scale(glm::rotate(glm::translate(
 				      glm::mat4(1),
@@ -128,7 +120,7 @@ void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
 void	Player::draw(__attribute__((unused)) gdl::AShader &shader,
 		     __attribute__((unused)) gdl::Clock const &clock)
 {
-  if ((_idJoy < _joystick.joystickCheck()) || (_idJoy == 0))
+  if (((_idJoy < _joystick.joystickCheck()) || (_idJoy == 0)) || _type == 3)
   {
     if (_anim == true)
     {
@@ -164,23 +156,18 @@ void	Player::draw(__attribute__((unused)) gdl::AShader &shader,
       if (_frame != 20)
 	_frame += 1;
     }
-    std::cout << "<<>>" << std::endl;
-    std::cout << _frame << std::endl;
-    std::cout << _anim << std::endl;
-    std::cout << "<<>>" << std::endl;
-    _texture.bind();
-    if (_idJoy == 0)
-      shader.setUniform("color", glm::vec4(0, 1, 0, 1));
-    if (_idJoy == 1)
-      shader.setUniform("color", glm::vec4(1, 1, 0, 1));
-    _model.draw(shader, _trans, clock.getElapsed());
-
-    if (_idJoy == 0)
-      shader.setUniform("view", glm::lookAt(
-			  glm::vec3(_x / 2, 5 , 10), // 5 5 10
-			  glm::vec3(_x, 0, _z),
-			  glm::vec3(0, 1, 0)));
   }
+  if (_type == 5)
+    shader.setUniform("color", glm::vec4(0, _idJoy, 0, 1));
+  if (_type == 3)
+      shader.setUniform("color", glm::vec4(1, 0, 0, 1));
+  if (_idJoy == 0)
+    shader.setUniform("view", glm::lookAt(
+			glm::vec3(_x / 2, 5 , 10),
+			glm::vec3(_x, 0, _z),
+			glm::vec3(0, 1, 0)));
+  if (((_idJoy < _joystick.joystickCheck()) || (_idJoy == 0)) || _type == 3)
+    _model.draw(shader, _trans, clock.getElapsed());
 }
 
 std::vector<int>	Player::getObjs() const

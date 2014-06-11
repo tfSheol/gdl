@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 15:51:01 2014 teddy fontaine
-** Last update Mon Jun  9 14:55:35 2014 teddy fontaine
+** Last update Wed Jun 11 10:52:16 2014 teddy fontaine
 */
 
 #include <iostream>
@@ -34,7 +34,7 @@ bool		GameEngine::initialize()
   glm::mat4 projection;
   glm::mat4 transformation;
   projection = glm::perspective(60.0f, 1280.0f / 960.0f, 0.1f, 100.0f);
-  transformation = glm::lookAt(glm::vec3(1, 1, 1), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+  transformation = glm::lookAt(glm::vec3(1, 1, 6), glm::vec3(1, 1, 5), glm::vec3(0, 1, 0));
 
   _shader.bind();
   _shader.setUniform("view", transformation);
@@ -78,7 +78,7 @@ bool			GameEngine::update()
     {
       if (objs[0] == 5)
       {
-	if ((objs[1] < objs[2]) || (objs[1] == 0))
+	if (((objs[1] < objs[2]) || (objs[1] == 0)) && objs[0] == 100)
 	  std::cout << objs[x] << std::endl;
       }
     }
@@ -92,29 +92,49 @@ bool			GameEngine::update()
 /*
  * Affiche la scene a l'ecran
  */
-void		GameEngine::draw()
+void			GameEngine::draw()
 {
-  size_t	i;
+  size_t		i;
+  size_t		x;
+  int			nb_player;
+  std::vector<int>	objs;
 
   i = -1;
+  nb_player = 0;
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   _shader.bind();
-  while (++i < _objects.size())
-    _objects[i]->draw(_shader, _clock);
-  glViewport(0, 0, 1280 / 2, 960);
-  _shader.setUniform("view", glm::lookAt(
-		      glm::vec3(2, 0, 0),
-		      glm::vec3(1, 1, 1),
-		      glm::vec3(0, 1, 0)));
   i = -1;
   while (++i < _objects.size())
-    _objects[i]->draw(_shader, _clock);
-  glViewport(1280 / 2, 0, 1280 / 2, 960);
-  _shader.setUniform("view", glm::lookAt(
-		      glm::vec3(0, 0, 0),
-		      glm::vec3(1, 1, 1),
-		      glm::vec3(0, 1, 0)));
-  _shader.setUniform("projection", glm::perspective(60.0f, (1280.0f / 2) / 960.0f, 0.1f, 100.0f));
+  {
+    x = -1;
+    objs = _objects[i]->getObjs();
+    while (++x < objs.size())
+    {
+      if (objs[0] == 5 && ((objs[1] < objs[2]) || (objs[1] == 0)))
+	nb_player = objs[1];
+    }
+    objs.clear();
+  }
+  if (nb_player == 1)
+  {
+    i = -1;
+    glViewport(0, 0, 1280 / 2, 960);
+    while (++i < _objects.size())
+      _objects[i]->draw(_shader, _clock);
+    i = -1;
+    glViewport(1280 / 2, 0, 1280 / 2, 960);
+    while (++i < _objects.size())
+      _objects[i]->draw(_shader, _clock);
+    _shader.setUniform("projection", glm::perspective(60.0f, (1280.0f / 2) / 960.0f, 0.1f, 100.0f));
+  }
+  else
+  {
+    i = -1;
+    glViewport(0, 0, 1280, 960);
+    while (++i < _objects.size())
+      _objects[i]->draw(_shader, _clock);
+    _shader.setUniform("projection", glm::perspective(60.0f, 1280.0f / 960.0f, 0.1f, 100.0f));
+  }
   this->flush();
 }
 

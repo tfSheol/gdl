@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-** Last update Mon Jun  9 14:38:09 2014 teddy fontaine
+** Last update Wed Jun 11 10:58:48 2014 teddy fontaine
 */
 
 #include "Player.hh"
@@ -54,18 +54,12 @@ bool	Player::initialize(__attribute__((unused)) float x,
 				       glm::vec3(_x, _y, _z)),
 				  _angle,
 				  glm::vec3(0, 1, 0)),
-		      glm::vec3(0.001f, 0.001f, 0.001f));
+		      glm::vec3(0.002f, 0.002f, 0.002f));
 
   _model.createSubAnim(0, "RESET", 0, 0);
   _model.createSubAnim(0, "START", 20, 30);
   _model.createSubAnim(0, "RUN", 37, 53);
   _model.createSubAnim(0, "END", 54, 100);
-
-//  if (_idJoy == 0)
-//    glDepthRangef(200, 50);
-//  if (_idJoy == 1)
-//    glViewport(1280 / 2, 0, 1280 / 2, 960);
-
 
   return (true);
 }
@@ -79,9 +73,9 @@ void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
   int	pause;
 
   _anim = false;
+  rezObjs();
   if ((_idJoy < _joystick.joystickCheck()) || (_idJoy == 0))
   {
-    rezObjs();
     if (_joystick.joystickForGame(_idJoy) > 0)
     {
       SDL_JoystickUpdate();
@@ -127,7 +121,7 @@ void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
 				      glm::vec3(_x, _y, _z)),
 				    _angle,
 				    glm::vec3(0, 1, 0)),
-			glm::vec3(0.001f, 0.001f, 0.001f));
+			glm::vec3(0.002f, 0.002f, 0.002f));
   }
 }
 
@@ -181,6 +175,11 @@ void	Player::draw(__attribute__((unused)) gdl::AShader &shader,
       shader.setUniform("color", glm::vec4(1, 1, 0, 1));
     _model.draw(shader, _trans, clock.getElapsed());
 
+    if (_idJoy == 0)
+      shader.setUniform("view", glm::lookAt(
+			  glm::vec3(_x / 2, 5 , 10), // 5 5 10
+			  glm::vec3(_x, 0, _z),
+			  glm::vec3(0, 1, 0)));
   }
 }
 

@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 17:34:37 2014 teddy fontaine
-** Last update Sun Jun  8 16:45:55 2014 teddy fontaine
+** Last update Wed Jun 11 15:27:20 2014 teddy fontaine
 */
 
 #include "AObject.hh"
@@ -97,4 +97,28 @@ glm::mat4		AObject::getTransformation()
   transform = glm::scale(transform, _scale);
 
   return (transform);
+}
+
+/*
+ * Return X
+ */
+float			AObject::getX() const
+{
+  return (_x);
+}
+
+/*
+ * Return Y
+ */
+float			AObject::getY() const
+{
+  return (_y);
+}
+
+/*
+ * Return z
+ */
+float			AObject::getZ() const
+{
+  return (_z);
 }

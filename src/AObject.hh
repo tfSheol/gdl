@@ -5,7 +5,7 @@
 ** Login   <nguye_1@epitech.net>
 **
 ** Started on  Thu May 15 16:02:49 2014 Alexandre NGUYEN
-** Last update Sun Jun  8 16:45:17 2014 teddy fontaine
+** Last update Wed Jun 11 15:27:32 2014 teddy fontaine
 */
 
 #include <SdlContext.hh>
@@ -39,11 +39,17 @@ class AObject
     void			rotate(glm::vec3 const& axis, float angle);
     void			scale(glm::vec3 const& scale);
     glm::mat4			getTransformation();
+    float			getX() const;
+    float			getY() const;
+    float			getZ() const;
 
   protected:
     glm::vec3		_position;
     glm::vec3		_rotation;
     glm::vec3		_scale;
+    float		_x;
+    float		_y;
+    float		_z;
 };
 
 #endif /* !AOBJECT_HH_ */

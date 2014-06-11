@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:37:28 2014 teddy fontaine
-** Last update Wed Jun 11 11:10:08 2014 teddy fontaine
+** Last update Wed Jun 11 16:05:22 2014 teddy fontaine
 */
 
 #include <Model.hh>
@@ -45,9 +45,6 @@ class Player : public AObject
   private:
     std::vector<int>	_objs;
     int			_type;
-    float		_x;
-    float		_y;
-    float		_z;
     float		_angle;
     int			_idJoy;
     int			_frame;

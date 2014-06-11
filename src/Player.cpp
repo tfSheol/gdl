@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-** Last update Wed Jun 11 11:36:23 2014 teddy fontaine
+** Last update Wed Jun 11 16:04:32 2014 teddy fontaine
 */
 
 #include "Player.hh"
@@ -120,6 +120,7 @@ void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
 void	Player::draw(__attribute__((unused)) gdl::AShader &shader,
 		     __attribute__((unused)) gdl::Clock const &clock)
 {
+  rezObjs();
   if (((_idJoy < _joystick.joystickCheck()) || (_idJoy == 0)) || _type == 3)
   {
     if (_anim == true)
@@ -158,14 +159,9 @@ void	Player::draw(__attribute__((unused)) gdl::AShader &shader,
     }
   }
   if (_type == 5)
-    shader.setUniform("color", glm::vec4(0, _idJoy, 0, 1));
+    shader.setUniform("color", glm::vec4(_idJoy, _idJoy, 0, 1));
   if (_type == 3)
-      shader.setUniform("color", glm::vec4(1, 0, 0, 1));
-  if (_idJoy == 0)
-    shader.setUniform("view", glm::lookAt(
-			glm::vec3(_x / 2, 5 , 10),
-			glm::vec3(_x, 0, _z),
-			glm::vec3(0, 1, 0)));
+    shader.setUniform("color", glm::vec4(1, 0, 0, 1));
   if (((_idJoy < _joystick.joystickCheck()) || (_idJoy == 0)) || _type == 3)
     _model.draw(shader, _trans, clock.getElapsed());
 }

@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Tue May 20 15:51:01 2014 teddy fontaine
-** Last update Wed Jun 11 16:01:21 2014 teddy fontaine
+** Last update Wed Jun 11 19:38:35 2014 teddy fontaine
 */
 
 #include <iostream>
@@ -33,7 +33,7 @@ bool		GameEngine::initialize()
 
   glm::mat4 projection;
   glm::mat4 transformation;
-  projection = glm::perspective(60.0f, 1280.0f / 960.0f, 0.1f, 100.0f);
+  projection = glm::perspective(30.0f, 1280.0f / 960.0f, 0.1f, 30.0f);
   transformation = glm::lookAt(glm::vec3(1, 1, 6), glm::vec3(1, 1, 5), glm::vec3(0, 1, 0));
 
   _shader.bind();
@@ -133,7 +133,7 @@ void			GameEngine::draw()
   {
     i = -1;
     _shader.setUniform("view", glm::lookAt(
-			 glm::vec3(p1x / 2, 5 , 10),
+			 glm::vec3(p1x / 2, 5 , p1z + 10),
 			 glm::vec3(p1x, 0, p1z),
 			 glm::vec3(0, 1, 0)));
     glViewport(0, 0, 1280 / 2, 960);
@@ -141,37 +141,37 @@ void			GameEngine::draw()
       _objects[i]->draw(_shader, _clock);
     i = -1;
     _shader.setUniform("view", glm::lookAt(
-			 glm::vec3(p2x / 2, 5 , 10),
+			 glm::vec3(p2x / 2, 15 , p2z + 10),
 			 glm::vec3(p2x, 0, p2z),
 			 glm::vec3(0, 1, 0)));
     glViewport(1280 / 2, 0, 1280 / 2, 960);
     while (++i < _objects.size())
       _objects[i]->draw(_shader, _clock);
-    _shader.setUniform("projection", glm::perspective(60.0f, (1280.0f / 2) / 960.0f, 0.1f, 100.0f));
+    _shader.setUniform("projection", glm::perspective(30.0f, (1280.0f / 2) / 960.0f, 0.1f, 30.0f));
   }
   else if (nb_player == 0)
   {
     i = -1;
     _shader.setUniform("view", glm::lookAt(
-			 glm::vec3(p1x, 5 , 10),
+			 glm::vec3(p1x / 2, 15 , p1x + 10),
 			 glm::vec3(p1x, 0, p1z),
 			 glm::vec3(0, 1, 0)));
     glViewport(0, 0, 1280, 960);
     while (++i < _objects.size())
       _objects[i]->draw(_shader, _clock);
-    _shader.setUniform("projection", glm::perspective(60.0f, 1280.0f / 960.0f, 0.1f, 100.0f));
+    _shader.setUniform("projection", glm::perspective(30.0f, 1280.0f / 960.0f, 0.1f, 30.0f));
   }
   else
   {
     i = -1;
     _shader.setUniform("view", glm::lookAt(
-			 glm::vec3(10, 5 , 10),
+			 glm::vec3(10, 15 , 10),
 			 glm::vec3(0, 0, 0),
 			 glm::vec3(0, 1, 0)));
     glViewport(0, 0, 1280, 960);
     while (++i < _objects.size())
       _objects[i]->draw(_shader, _clock);
-    _shader.setUniform("projection", glm::perspective(60.0f, 1280.0f / 960.0f, 0.1f, 100.0f));
+    _shader.setUniform("projection", glm::perspective(30.0f, 1280.0f / 960.0f, 0.1f, 30.0f));
   }
   this->flush();
 }

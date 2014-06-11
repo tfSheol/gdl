@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-** Last update Wed Jun 11 16:04:32 2014 teddy fontaine
+** Last update Wed Jun 11 19:28:08 2014 teddy fontaine
 */
 
 #include "Player.hh"
@@ -66,7 +66,7 @@ void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
 
   _anim = false;
   rezObjs();
-  if (((_idJoy < _joystick.joystickCheck()) || (_idJoy == 0)) || _type == 3)
+  if (((_idJoy < _joystick.joystickCheck()) || (_idJoy == 0)) || _type == 5)
   {
     if (_joystick.joystickForGame(_idJoy) > 0)
     {
@@ -119,13 +119,13 @@ void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
 
 void	Player::draw(__attribute__((unused)) gdl::AShader &shader,
 		     __attribute__((unused)) gdl::Clock const &clock)
+
 {
   rezObjs();
   if (((_idJoy < _joystick.joystickCheck()) || (_idJoy == 0)) || _type == 3)
   {
     if (_anim == true)
     {
-      std::cout << "START & RUN" << std::endl;
       if (_frame == 20 || _frame > 45)
       {
 	if (_frame > 45)
@@ -142,7 +142,6 @@ void	Player::draw(__attribute__((unused)) gdl::AShader &shader,
     {
       if (_frame > 20 && _frame < 46)
       {
-	std::cout << "END" << std::endl;
 	_model.setCurrentSubAnim("END");
 	_frame = 46;
       }
@@ -150,7 +149,6 @@ void	Player::draw(__attribute__((unused)) gdl::AShader &shader,
 	_frame += 1;
       if (_frame >= 93)
       {
-	std::cout << "RESET" << std::endl;
 	_model.setCurrentSubAnim("RESET");
 	_frame = 20;
       }

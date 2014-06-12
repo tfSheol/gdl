@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-** Last update Thu Jun 12 11:43:41 2014 teddy fontaine
+** Last update Thu Jun 12 15:21:20 2014 teddy fontaine
 */
 
 #include "Player.hh"
@@ -17,7 +17,7 @@ Player::Player(int idJoy, int type)
   if (_type == 5 || _type == 3)
     _modelPath = "./assets/marvin.fbx";
   else if (_type == 4)
-    _modelPath = "./assets/boss.fbx";
+    _modelPath = "./assets/bomb.fbx";
 }
 
 Player::~Player()
@@ -98,7 +98,7 @@ void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
       _anim = true;
       _x -= clock.getElapsed() * _speed;
       _angle = 270.0f;
-      setObjs(60);
+      setObjs(6);
     }
     if (((input.getKey(SDLK_RIGHT) && _idJoy == 0) || x > 10000) || _objs[5] == (int)true)
     {
@@ -164,7 +164,7 @@ void	Player::draw(__attribute__((unused)) gdl::AShader &shader,
     shader.setUniform("color", glm::vec4(_idJoy, _idJoy, 0, 1));
   if (_type == 3)
     shader.setUniform("color", glm::vec4(1, 0, 0, 1));
-  if (((_idJoy < _joystick.joystickCheck()) || (_idJoy == 0)) || _type == 3)
+  if (((_idJoy < _joystick.joystickCheck()) || (_idJoy == 0)) || _type == 3 || _type == 4)
     _model.draw(shader, _trans, clock.getElapsed());
 }
 

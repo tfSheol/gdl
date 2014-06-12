@@ -5,7 +5,7 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Wed May 21 11:27:28 2014 teddy fontaine
-** Last update Wed Jun 11 11:11:53 2014 teddy fontaine
+** Last update Thu Jun 12 15:18:05 2014 teddy fontaine
 */
 
 #include "GameEngine.hh"
@@ -36,7 +36,7 @@ bool		GameEngine::scene()
   AObject *player1 = new Player(1, 5);
   AObject *player2 = new Player(2, 5);
   AObject *player3 = new Player(3, 5);
-  AObject *player4 = new Player(4, 5);
+  AObject *player4 = new Player(4, 4);
   AObject *player5 = new Player(5, 3);
   AObject *bonus0 = new Bonus("./assets/bomb.fbx");
 

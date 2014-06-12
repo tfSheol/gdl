@@ -5,16 +5,19 @@
 ** Login   <fontai_d@epitech.eu>
 **
 ** Started on  Fri May 30 11:35:33 2014 teddy fontaine
-** Last update Wed Jun 11 19:28:08 2014 teddy fontaine
+** Last update Thu Jun 12 11:43:41 2014 teddy fontaine
 */
 
 #include "Player.hh"
 
 Player::Player(int idJoy, int type)
 {
-  _modelPath = "./assets/marvin.fbx";
   _idJoy = idJoy;
   _type = type;
+  if (_type == 5 || _type == 3)
+    _modelPath = "./assets/marvin.fbx";
+  else if (_type == 4)
+    _modelPath = "./assets/boss.fbx";
 }
 
 Player::~Player()
@@ -53,6 +56,7 @@ bool	Player::initialize(__attribute__((unused)) float x,
   _model.createSubAnim(0, "START", 20, 30);
   _model.createSubAnim(0, "RUN", 37, 53);
   _model.createSubAnim(0, "END", 54, 100);
+  rezObjs();
   return (true);
 }
 
@@ -65,10 +69,9 @@ void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
   int	pause;
 
   _anim = false;
-  rezObjs();
-  if (((_idJoy < _joystick.joystickCheck()) || (_idJoy == 0)) || _type == 5)
+  if (((_idJoy < _joystick.joystickCheck()) || (_idJoy == 0)) || _type != 5)
   {
-    if (_joystick.joystickForGame(_idJoy) > 0)
+    if ((_joystick.joystickForGame(_idJoy) > 0) && _type == 5)
     {
       SDL_JoystickUpdate();
       x = SDL_JoystickGetAxis(_joystick.getJoy(), 0);
@@ -114,6 +117,7 @@ void	Player::update(__attribute__((unused)) gdl::Clock const &clock,
 				    _angle,
 				    glm::vec3(0, 1, 0)),
 			glm::vec3(0.002f, 0.002f, 0.002f));
+    rezObjs();
   }
 }
 
